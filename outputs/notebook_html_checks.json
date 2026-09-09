@@ -1,0 +1,14 @@
+[
+  {
+    "notebook": "01_QuantEcon_Nashpy_Interactive.ipynb",
+    "html_conversion": "passed",
+    "tables": 12,
+    "embedded_images": 0
+  },
+  {
+    "notebook": "02_Gambit_PyGambit_Interactive.ipynb",
+    "html_conversion": "passed",
+    "tables": 12,
+    "embedded_images": 7
+  }
+]

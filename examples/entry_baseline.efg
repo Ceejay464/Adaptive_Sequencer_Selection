@@ -1,0 +1,8 @@
+EFG 2 R "Selten: entry and credible continuation" { "Entrant" "Incumbent" }
+""
+
+p "" 1 1 "" { "Out" "In" } 0
+t "" 1 "Out" { 0, 2 }
+p "" 2 1 "" { "Fight" "Accommodate" } 0
+t "" 2 "Fight" { -1, -1 }
+t "" 3 "Accommodate" { 1, 1 }

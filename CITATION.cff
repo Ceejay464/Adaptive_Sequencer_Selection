@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Cite the underlying software and theory sources listed in README.md when using the examples."
+title: "COMSCI/ECON 206: Game Theory Tools Notebooks"
+authors:
+  - family-names: Zhang
+    given-names: Luyao
+version: 0.3.0
+date-released: 2026-09-09
+type: software
+repository-code: "https://github.com/sunshineluyao/gt-tools-demos"

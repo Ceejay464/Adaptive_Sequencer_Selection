@@ -1,0 +1,9 @@
+{
+  "notebook": "notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb",
+  "status": "passed",
+  "code_cells": 7,
+  "execution_seconds": 4.22,
+  "method": "all cells executed in a fresh local Python process; real outputs captured in display order",
+  "remote_colab_tested": false,
+  "browser_widget_render_tested": false
+}

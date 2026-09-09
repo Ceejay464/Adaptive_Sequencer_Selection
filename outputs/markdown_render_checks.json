@@ -1,0 +1,7 @@
+{
+  "math_expressions": 48,
+  "mermaid_diagrams": 3,
+  "status": "passed",
+  "method": "KaTeX strict typesetting and Mermaid parser; no live browser claim",
+  "katex_version": "0.18.7"
+}

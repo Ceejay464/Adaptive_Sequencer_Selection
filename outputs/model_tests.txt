@@ -1,0 +1,22 @@
+test_asymmetric_axis_convention (test_examples.MatrixTests.test_asymmetric_axis_convention) ... ok
+test_matching_pennies (test_examples.MatrixTests.test_matching_pennies) ... ok
+test_matrix_widgets_pass_edited_payoffs (test_examples.MatrixTests.test_matrix_widgets_pass_edited_payoffs) ... ok
+test_prisoners_dilemma (test_examples.MatrixTests.test_prisoners_dilemma) ... ok
+test_tied_game_and_input_validation (test_examples.MatrixTests.test_tied_game_and_input_validation) ... ok
+test_backward_induction_preserves_ties (test_examples.TreeTests.test_backward_induction_preserves_ties) ... ok
+test_bayesian_baseline_and_prior_change (test_examples.TreeTests.test_bayesian_baseline_and_prior_change) ... ok
+test_bayesian_information_sets (test_examples.TreeTests.test_bayesian_information_sets) ... ok
+test_bayesian_parameters_against_conditional_incentives (test_examples.TreeTests.test_bayesian_parameters_against_conditional_incentives) ... ok
+test_entry_nash_and_spne (test_examples.TreeTests.test_entry_nash_and_spne) ... ok
+test_export_import_round_trip (test_examples.TreeTests.test_export_import_round_trip) ... ok
+test_tree_widgets_pass_edited_parameters (test_examples.TreeTests.test_tree_widgets_pass_edited_parameters) ... ok
+test_every_code_cell_has_successful_saved_output_state (test_presentation.PresentationTests.test_every_code_cell_has_successful_saved_output_state) ... ok
+test_figures_are_embedded_and_type_information_is_present (test_presentation.PresentationTests.test_figures_are_embedded_and_type_information_is_present) ... ok
+test_mermaid_sources_encode_information_sets (test_presentation.PresentationTests.test_mermaid_sources_encode_information_sets) ... ok
+test_saved_changed_parameter_examples (test_presentation.PresentationTests.test_saved_changed_parameter_examples) ... ok
+test_teaching_pages_have_tables_figures_and_no_python_blocks (test_presentation.PresentationTests.test_teaching_pages_have_tables_figures_and_no_python_blocks) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 4.031s
+
+OK

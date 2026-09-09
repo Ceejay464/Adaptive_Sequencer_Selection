@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+game_exports/
+.DS_Store
+
+outputs/jupyter_run/
+node_modules/

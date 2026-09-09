@@ -1,0 +1,10 @@
+flowchart TD
+    N{"Nature: Firm 2 cost"} -->|"Low cost 1; probability 0.5"| L["Firm 1: I1"]
+    N -->|"High cost 3; probability 0.5"| H["Firm 1: I1"]
+    L -->|Enter| LE["Firm 2 low: I2"]
+    L -->|Out| LO["Firm 2 low: I2"]
+    H -->|Enter| HE["Firm 2 high: I3"]
+    H -->|Out| HO["Firm 2 high: I3"]
+    L -.- H
+    LE -.- LO
+    HE -.- HO

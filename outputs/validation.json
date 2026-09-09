@@ -1,0 +1,65 @@
+{
+  "release": "0.3.0",
+  "date": "2026-09-09",
+  "repository": "https://github.com/sunshineluyao/gt-tools-demos",
+  "python": "3.12.14",
+  "platform": "Linux x86_64",
+  "direct_dependencies": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "pandas": "2.2.3",
+    "matplotlib": "3.10.8",
+    "quantecon": "0.11.4",
+    "nashpy": "0.0.43",
+    "pygambit": "16.7.0",
+    "ipywidgets": "8.1.7"
+  },
+  "notebook_execution": [
+    {
+      "notebook": "notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb",
+      "status": "passed",
+      "code_cells": 7,
+      "execution_seconds": 4.22,
+      "method": "all cells executed in a fresh local Python process; real outputs captured in display order",
+      "remote_colab_tested": false,
+      "browser_widget_render_tested": false
+    },
+    {
+      "notebook": "notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb",
+      "status": "passed",
+      "code_cells": 10,
+      "execution_seconds": 1.17,
+      "method": "all cells executed in a fresh local Python process; real outputs captured in display order",
+      "remote_colab_tested": false,
+      "browser_widget_render_tested": false
+    }
+  ],
+  "local_tests": {
+    "passed": 17,
+    "bayesian_parameter_combinations": 27
+  },
+  "math_and_mermaid": {
+    "math_expressions": 48,
+    "mermaid_diagrams": 3,
+    "status": "passed",
+    "method": "KaTeX strict typesetting and Mermaid parser; no live browser claim",
+    "katex_version": "0.18.7"
+  },
+  "html_conversion": [
+    {
+      "notebook": "01_QuantEcon_Nashpy_Interactive.ipynb",
+      "html_conversion": "passed",
+      "tables": 12,
+      "embedded_images": 0
+    },
+    {
+      "notebook": "02_Gambit_PyGambit_Interactive.ipynb",
+      "html_conversion": "passed",
+      "tables": 12,
+      "embedded_images": 7
+    }
+  ],
+  "remote_colab_browser_session": false,
+  "gte_live_builder_verified": false,
+  "hosted_tests": "Standard Jupyter execution is configured in .github/workflows/notebooks.yml. Consult the GitHub Actions run for hosted results; this record describes local checks before publication."
+}

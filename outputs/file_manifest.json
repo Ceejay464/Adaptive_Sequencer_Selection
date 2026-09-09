@@ -1,0 +1,270 @@
+{
+  ".gitattributes": {
+    "bytes": 57,
+    "sha256": "7fa5d7a569bd7b9f32cd63dcd74d46d73249aebc0a67df19661a86a609be6917"
+  },
+  ".github/workflows/notebooks.yml": {
+    "bytes": 1175,
+    "sha256": "e1eaf65e2b927746782eca552b5b2d6af816217603576dfa6238300055f08789"
+  },
+  ".gitignore": {
+    "bytes": 112,
+    "sha256": "49579cd3da82ec54283d52d7681cbb0cd7c0ea495e3ac22955b3c75d190d6d3e"
+  },
+  "CHANGELOG.md": {
+    "bytes": 1529,
+    "sha256": "a9fc9162987d11488e183987dd8e92c70ae04c7dffa20449365bf41a0a088c82"
+  },
+  "CITATION.cff": {
+    "bytes": 356,
+    "sha256": "236bb1e07aad0b9fc4093829e895972568b5f5fbec195e55c5f7c2c9803f388b"
+  },
+  "LICENSE_POLICY.md": {
+    "bytes": 949,
+    "sha256": "a4d41795115e6a49ba4218caa8b54b5ff4351e959e3652bfb1e6b5da6907a414"
+  },
+  "README.md": {
+    "bytes": 20752,
+    "sha256": "953cf3bb43df1e03b53877a72b7cb7d379c094420eaa3f514dc6e969cc261bfa"
+  },
+  "docs/01_Matrix_Games_Demo.md": {
+    "bytes": 9118,
+    "sha256": "0159ebae9e69452fb4fe68447b0b9f3bc2eba035c0f31e4226326a44748ae7ef"
+  },
+  "docs/02_Trees_and_Information_Demo.md": {
+    "bytes": 14272,
+    "sha256": "a43478b6b2b5588b54893a7190b4d5346bd153fb127869992be01df678f9877f"
+  },
+  "docs/SETUP.md": {
+    "bytes": 3305,
+    "sha256": "84de999094d2230fbbcf102e4303fab2b16860fb1edbb6058821f8968387a59d"
+  },
+  "docs/Wednesday_Tools_and_Practice.pdf": {
+    "bytes": 119563,
+    "sha256": "c86afa7ed1139c5f52e946217d881796aad56bb1d44659b74ebb0c27126d9ad5"
+  },
+  "docs/Wednesday_UI_Demo.md": {
+    "bytes": 7048,
+    "sha256": "02af437d194467e5d7ae692333ddff9463f3fc80ece9f8c908c943419ea70cfe"
+  },
+  "docs/assets/02_Gambit_PyGambit_Interactive_09_00.png": {
+    "bytes": 27436,
+    "sha256": "f77c4e2081b12820d46093bc1d77b110b6550d1510fe62230bc1c919a36e6fee"
+  },
+  "docs/assets/02_Gambit_PyGambit_Interactive_11_00.png": {
+    "bytes": 27539,
+    "sha256": "af98c1ebb78dbbf9a1b69b2efc752c09686e19a6b78549666e39658bbd676050"
+  },
+  "docs/assets/02_Gambit_PyGambit_Interactive_16_01.png": {
+    "bytes": 47912,
+    "sha256": "cbaebb8dfc6c351c4029851e9a1610a5c6d9e355d3d1c1922983c9260dc2653a"
+  },
+  "docs/assets/02_Gambit_PyGambit_Interactive_18_01.png": {
+    "bytes": 48165,
+    "sha256": "83a429d115dfcb90156f1ff5f2d5fa95173ba7be035d832dee628aeedb389349"
+  },
+  "docs/assets/02_Gambit_PyGambit_Interactive_18_04.png": {
+    "bytes": 48155,
+    "sha256": "667d9044c6e8012d880c6ecdb690c318a05fcbce0f708a9a728ebb565cfce091"
+  },
+  "docs/assets/bayesian_information_sets.mmd": {
+    "bytes": 341,
+    "sha256": "9fb683df26cc461d15bd2e725269a7415c89cb8bc4891e3af9fe8643d357862b"
+  },
+  "docs/assets/bayesian_tree.png": {
+    "bytes": 47912,
+    "sha256": "cbaebb8dfc6c351c4029851e9a1610a5c6d9e355d3d1c1922983c9260dc2653a"
+  },
+  "docs/assets/entry_game.mmd": {
+    "bytes": 167,
+    "sha256": "1190dabec149cf3bd74599d75925abc1239792a8227abb8b7f55e0f8bfe390e5"
+  },
+  "docs/assets/entry_tree.png": {
+    "bytes": 27436,
+    "sha256": "f77c4e2081b12820d46093bc1d77b110b6550d1510fe62230bc1c919a36e6fee"
+  },
+  "examples/bayesian_baseline.efg": {
+    "bytes": 669,
+    "sha256": "1cde4495384e82538069381c900f12e4ed21ad7b420e40c75634f369b9484cbf"
+  },
+  "examples/bayesian_current.efg": {
+    "bytes": 671,
+    "sha256": "6681450c8c6b6937d74d8330f810e6a00bc0d6cdcfda8f4d1daf52d065233dd4"
+  },
+  "examples/bayesian_high_firm1_cost.efg": {
+    "bytes": 671,
+    "sha256": "6681450c8c6b6937d74d8330f810e6a00bc0d6cdcfda8f4d1daf52d065233dd4"
+  },
+  "examples/bayesian_prior_08.efg": {
+    "bytes": 669,
+    "sha256": "e2964523e10f51dcd5a77c3d6f409be511e5606011cc4b3fd33c18cef785837b"
+  },
+  "examples/entry_baseline.efg": {
+    "bytes": 227,
+    "sha256": "f21967e1e9a3a33c6b7541374c55d302ea80c1b2039fd96bc8f36fd66aea45f7"
+  },
+  "examples/entry_credible_threat.efg": {
+    "bytes": 226,
+    "sha256": "5576503840b2e42aab9d84c7e607bf233e618a6572d5c19a4c37f459eda86ab9"
+  },
+  "examples/entry_current.efg": {
+    "bytes": 226,
+    "sha256": "5576503840b2e42aab9d84c7e607bf233e618a6572d5c19a4c37f459eda86ab9"
+  },
+  "examples/prisoners_dilemma.nfg": {
+    "bytes": 184,
+    "sha256": "cc2847b7044a2138ae729fcc2d36e29b98da0f2b003cc49b1a82510e7a10feb5"
+  },
+  "notebooks/axelrod/.gitkeep": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb": {
+    "bytes": 415489,
+    "sha256": "63c6f41aba88be70016ec1adaca7170e4ad7413f46dca3d799e91f046054cadf"
+  },
+  "notebooks/mesa/.gitkeep": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "notebooks/openspiel/.gitkeep": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "notebooks/otree/.gitkeep": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "notebooks/pettingzoo/.gitkeep": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb": {
+    "bytes": 40084,
+    "sha256": "466175389849015a6da2d3034118d50d83ec7d68c1c1bc48ed2375bfa2fbeb92"
+  },
+  "notebooks/rllib/.gitkeep": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "outputs/01_QuantEcon_Nashpy_Interactive_execution.json": {
+    "bytes": 334,
+    "sha256": "2ee43315a4b64ec96c250e5d6dc4f1303852c7605d75d088d4bff38eda3d1ce5"
+  },
+  "outputs/02_Gambit_PyGambit_Interactive_execution.json": {
+    "bytes": 333,
+    "sha256": "21f36a9684133ab609cfeee09dfea95680db2189faef2fe23c14e07492853f6f"
+  },
+  "outputs/README.md": {
+    "bytes": 1109,
+    "sha256": "76291c3830b02d9724e89381cd8d1ec399cfb1c7fca7cb1d912c120be2e5a9a1"
+  },
+  "outputs/markdown_render_checks.json": {
+    "bytes": 187,
+    "sha256": "53b17cc7df4a7ba8b2a03a08dd459c491e69148aeb2b054b210f6fe9b0509352"
+  },
+  "outputs/model_tests.txt": {
+    "bytes": 2074,
+    "sha256": "ad1f3d3b01377dd42faddb5da8f432230e4e7e524945105b3d5820092a2cc3c6"
+  },
+  "outputs/notebook_html_checks.json": {
+    "bytes": 286,
+    "sha256": "e3b1ecab7caa26471d36a9624677ec6e7f25fb1ae47f18bf55cb08deb05a7c94"
+  },
+  "outputs/validation.json": {
+    "bytes": 2094,
+    "sha256": "2fe876e7bada2e466d1bd48136adf0e9896b638bf72dd47c2b3fbb5cf40269e4"
+  },
+  "references/SOURCE_NOTES.md": {
+    "bytes": 2182,
+    "sha256": "9a9313000c8ad1ff593c4a52148315452c1f8cbd41d4b1dd3f9e54fc6c603b9d"
+  },
+  "references/licenses/axelrod_LICENSE.txt": {
+    "bytes": 1178,
+    "sha256": "488dc57d24ebdb5e0be483b6663dc2cad1fe6152feec6df759fd4721341b722f"
+  },
+  "references/licenses/gambit_LICENSE.txt": {
+    "bytes": 17987,
+    "sha256": "ba9ed2269151ad63b922598f3c5c19ddf781b2bbb6cb843ed9f085ecd1679c5d"
+  },
+  "references/licenses/gte_LICENSE.txt": {
+    "bytes": 35147,
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+  },
+  "references/licenses/mesa_LICENSE.txt": {
+    "bytes": 11358,
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  "references/licenses/nashpy_LICENSE.txt": {
+    "bytes": 1069,
+    "sha256": "052df58fa5d8e7203147d8f1e91a15f4327e9df659c6f39868a66d24f30e886b"
+  },
+  "references/licenses/openspiel_LICENSE.txt": {
+    "bytes": 11358,
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  "references/licenses/otree_LICENSE.txt": {
+    "bytes": 1573,
+    "sha256": "001aa4705e942a063008a1e1b8d22c059b99e583f809ec3ff667b96c40fd8acf"
+  },
+  "references/licenses/pettingzoo_LICENSE.txt": {
+    "bytes": 1073,
+    "sha256": "fe9f87b9e7bedda9df7a8d73be96fe0c6456bd84271c8dc24e36c4e8e93515f2"
+  },
+  "references/licenses/quantecon_LICENSE.txt": {
+    "bytes": 1120,
+    "sha256": "d04b925da6b9c6265e08ca4304c9556ce29b703aecea75e8c529513e57fdc721"
+  },
+  "references/licenses/rllib_LICENSE.txt": {
+    "bytes": 27249,
+    "sha256": "cc68f9a408c8edf33c900f645846a7d8388a23e4b92a4a9fce7499c372b2acc0"
+  },
+  "references/references.bib": {
+    "bytes": 3237,
+    "sha256": "de37d61a591e8ad801ab4674455b303ec734801a86d47a90228012eb56e32f46"
+  },
+  "requirements-dev.txt": {
+    "bytes": 70,
+    "sha256": "f2d469849c8a6bfa533c2e26cc8ba34efc2cd8628234012d5624a394c67a9459"
+  },
+  "requirements.txt": {
+    "bytes": 268,
+    "sha256": "023ae346b855bc0d86fb62090cc3e723d5e8148548804545d6fdc6bfcb1fc26b"
+  },
+  "scripts/build_teaching_pages.py": {
+    "bytes": 3330,
+    "sha256": "db9fb50b6fd64da010454f37e67176687112dd7fe5becbc8113cc40b0bc079c8"
+  },
+  "scripts/check_markdown.mjs": {
+    "bytes": 2156,
+    "sha256": "b6cfcaa391dbd006b237ffa0e2594d6b3e11a63fd02c5d88f466c8f00c1cef36"
+  },
+  "scripts/configure_colab_links.py": {
+    "bytes": 1413,
+    "sha256": "b17f20f5bff4dbdfc2ebd0fd5de11929bdab4300c64b54ea564916d500749765"
+  },
+  "scripts/execute_notebooks.py": {
+    "bytes": 4194,
+    "sha256": "75ee16778f581dbb14f2794f1434e37c1c17d9dba8368c269adccaa1b36f885c"
+  },
+  "scripts/execute_with_jupyter.py": {
+    "bytes": 1312,
+    "sha256": "c002b27f0cd1960a9bbc16daca4c756e226e55d607d55c9502b97959f1e12949"
+  },
+  "tests/test_examples.py": {
+    "bytes": 7712,
+    "sha256": "0b76309cdc979866aba779b28499673526391a5b11e96567407278feea543a30"
+  },
+  "tests/test_presentation.py": {
+    "bytes": 2993,
+    "sha256": "486e45e758be218e86a4870924e53ac1969b484651c0e0ee0e0e729b66093604"
+  },
+  "validation/README.md": {
+    "bytes": 417,
+    "sha256": "c77d20ad3fac9c7d07cee9aed1e9ef7bf05ea4fc94bebcd32569fa2db3c0b5b9"
+  },
+  "validation/package.json": {
+    "bytes": 183,
+    "sha256": "9bdeb29e6c6a2636b1d18e0940a7af484f4873e9f009f21b8ca7a595addde6bc"
+  }
+}
