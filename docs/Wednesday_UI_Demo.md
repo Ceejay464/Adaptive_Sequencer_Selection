@@ -1,6 +1,8 @@
 # Wednesday · Tools and Practice
 **COMSCI/ECON 206 · Week 3 · Instructor: Prof. Luyao Zhang**
 
+[Course home](../README.md) · [Teach matrices](01_Matrix_Games_Demo.md) · [Teach trees and types](02_Trees_and_Information_Demo.md)
+
 ## Learning route and outcomes
 By the end, students should select a representation, calculate a small equilibrium, change an assumption and explain the change. The sequence is **Nash → Selten → Harsanyi**: matrix incentives, credible continuation and private information.
 

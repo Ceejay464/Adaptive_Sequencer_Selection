@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="198" height="42" viewBox="0 0 198 42" role="img" aria-labelledby="title description">
+<title id="title">Teach: matrices</title>
+<desc id="description">Navigation link: Teach: matrices</desc>
+<g font-family="DejaVu Sans, Arial, sans-serif" stroke-linecap="round" stroke-linejoin="round">
+
+<rect x="1" y="1" width="196" height="40" rx="8" fill="#315EFB" stroke="#315EFB" stroke-width="1.5"/>
+<path d="M 14 13 H 32 V 29 H 14 Z M 23 13 V 29 M 14 21 H 32" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<text x="45" y="27" font-size="15" font-weight="700" text-anchor="start" fill="#FFFFFF">Teach: matrices</text>
+</g></svg>

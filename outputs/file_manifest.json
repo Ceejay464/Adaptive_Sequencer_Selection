@@ -12,28 +12,28 @@
     "sha256": "49579cd3da82ec54283d52d7681cbb0cd7c0ea495e3ac22955b3c75d190d6d3e"
   },
   "CHANGELOG.md": {
-    "bytes": 1529,
-    "sha256": "a9fc9162987d11488e183987dd8e92c70ae04c7dffa20449365bf41a0a088c82"
+    "bytes": 2135,
+    "sha256": "e9c26b69e3cd2c54fda36984c23d96c2786ded839fc02169e6f7eb5e20cb67f8"
   },
   "CITATION.cff": {
     "bytes": 356,
-    "sha256": "236bb1e07aad0b9fc4093829e895972568b5f5fbec195e55c5f7c2c9803f388b"
+    "sha256": "6d0356c5a9ca3eeaa4cd61a6bb48e8f8950184a430ad46ce32469fd64213ab02"
   },
   "LICENSE_POLICY.md": {
     "bytes": 949,
     "sha256": "a4d41795115e6a49ba4218caa8b54b5ff4351e959e3652bfb1e6b5da6907a414"
   },
   "README.md": {
-    "bytes": 20752,
-    "sha256": "953cf3bb43df1e03b53877a72b7cb7d379c094420eaa3f514dc6e969cc261bfa"
+    "bytes": 23821,
+    "sha256": "106453a2b825d5e8ad2e120a5912ef891f255c51b5edacc9ff5c9a9ec67e6340"
   },
   "docs/01_Matrix_Games_Demo.md": {
-    "bytes": 9118,
-    "sha256": "0159ebae9e69452fb4fe68447b0b9f3bc2eba035c0f31e4226326a44748ae7ef"
+    "bytes": 9866,
+    "sha256": "541a528afea3e69b17a8f3285f1c8375728f9eec3a6ca7fb625da9b90c5cf8b2"
   },
   "docs/02_Trees_and_Information_Demo.md": {
-    "bytes": 14272,
-    "sha256": "a43478b6b2b5588b54893a7190b4d5346bd153fb127869992be01df678f9877f"
+    "bytes": 14966,
+    "sha256": "958afa65135dad9a5db4c58e6e61f0b289014c21a23e7b1afc9c2d972cd50b33"
   },
   "docs/SETUP.md": {
     "bytes": 3305,
@@ -44,8 +44,8 @@
     "sha256": "c86afa7ed1139c5f52e946217d881796aad56bb1d44659b74ebb0c27126d9ad5"
   },
   "docs/Wednesday_UI_Demo.md": {
-    "bytes": 7048,
-    "sha256": "02af437d194467e5d7ae692333ddff9463f3fc80ece9f8c908c943419ea70cfe"
+    "bytes": 7183,
+    "sha256": "060aeeb7f3338880e30238b729c0df11e511d02c8eeacf7cc09f790f5e5c4d6f"
   },
   "docs/assets/02_Gambit_PyGambit_Interactive_09_00.png": {
     "bytes": 27436,
@@ -67,21 +67,57 @@
     "bytes": 48155,
     "sha256": "667d9044c6e8012d880c6ecdb690c318a05fcbce0f708a9a728ebb565cfce091"
   },
+  "docs/assets/README.md": {
+    "bytes": 2874,
+    "sha256": "b917821e42600e1340f0c55249950130ab9c4b2c593ab871be6f9ab54acd9e9d"
+  },
   "docs/assets/bayesian_information_sets.mmd": {
-    "bytes": 341,
-    "sha256": "9fb683df26cc461d15bd2e725269a7415c89cb8bc4891e3af9fe8643d357862b"
+    "bytes": 627,
+    "sha256": "807bfc89b48d75ab3857ac258224a8329ce3668f2383a19125bcec2ee65be928"
   },
   "docs/assets/bayesian_tree.png": {
     "bytes": 47912,
     "sha256": "cbaebb8dfc6c351c4029851e9a1610a5c6d9e355d3d1c1922983c9260dc2653a"
   },
+  "docs/assets/colab-01.svg": {
+    "bytes": 660,
+    "sha256": "7a8603ac8d718c7116a6e377f314cf72875916497253737751125a4343a52d4f"
+  },
+  "docs/assets/colab-02.svg": {
+    "bytes": 660,
+    "sha256": "cf1aafa5bb03b7052e2939c9ac17956c2b672bb40a405abd49b1b69496c7e46d"
+  },
+  "docs/assets/download.svg": {
+    "bytes": 668,
+    "sha256": "5930b782c3fafd40b5bbc9dba61710b960d43b0b62e37d20d2949cd1355c28bd"
+  },
   "docs/assets/entry_game.mmd": {
-    "bytes": 167,
-    "sha256": "1190dabec149cf3bd74599d75925abc1239792a8227abb8b7f55e0f8bfe390e5"
+    "bytes": 517,
+    "sha256": "cc2840bc96aefd674ee659994bc0d26ac3b01b892d9665a7b620b77ce918ac14"
   },
   "docs/assets/entry_tree.png": {
     "bytes": 27436,
     "sha256": "f77c4e2081b12820d46093bc1d77b110b6550d1510fe62230bc1c919a36e6fee"
+  },
+  "docs/assets/figure_manifest.json": {
+    "bytes": 3207,
+    "sha256": "f5fe4a703de099ea9d082ee79c67e97f82812189fbe9e87b48c9af41a6e844d6"
+  },
+  "docs/assets/game-theory-hero.svg": {
+    "bytes": 9929,
+    "sha256": "9448a6ed00c34a12ec1265d2c13cabdb9f9b56c37989b1a1fa1b0bfd93fc3b32"
+  },
+  "docs/assets/software_choice.mmd": {
+    "bytes": 802,
+    "sha256": "8d985f392344c93252c6dfc87920a0240c8f44aa7c71bc3e1865af62b9e37f6d"
+  },
+  "docs/assets/teach-matrices.svg": {
+    "bytes": 668,
+    "sha256": "eea124c720777211a99b86699271ea7159f6f09700816c291a49a5771d3578df"
+  },
+  "docs/assets/teach-trees.svg": {
+    "bytes": 679,
+    "sha256": "9f0ef4706180cc52671ce424b257fbb8126365fe6f659f1292b586f448ccf4c1"
   },
   "examples/bayesian_baseline.efg": {
     "bytes": 669,
@@ -156,8 +192,8 @@
     "sha256": "21f36a9684133ab609cfeee09dfea95680db2189faef2fe23c14e07492853f6f"
   },
   "outputs/README.md": {
-    "bytes": 1109,
-    "sha256": "76291c3830b02d9724e89381cd8d1ec399cfb1c7fca7cb1d912c120be2e5a9a1"
+    "bytes": 1596,
+    "sha256": "b6431dcfdfe16f6a163326899aca57ece8488911945394d6a49237597d5bc82e"
   },
   "outputs/markdown_render_checks.json": {
     "bytes": 187,
@@ -174,6 +210,10 @@
   "outputs/validation.json": {
     "bytes": 2094,
     "sha256": "2fe876e7bada2e466d1bd48136adf0e9896b638bf72dd47c2b3fbb5cf40269e4"
+  },
+  "outputs/visual_refresh_checks.json": {
+    "bytes": 786,
+    "sha256": "6fe0b4c8e7c22556ccb139d3dfeae85ca25d71df9ad7835e379550afd5e627f1"
   },
   "references/SOURCE_NOTES.md": {
     "bytes": 2182,
@@ -231,9 +271,13 @@
     "bytes": 268,
     "sha256": "023ae346b855bc0d86fb62090cc3e723d5e8148548804545d6fdc6bfcb1fc26b"
   },
+  "scripts/build_repo_visuals.py": {
+    "bytes": 12191,
+    "sha256": "087aa652658dab3208d164b2017698a512b23e78443d2a25d5543fc31a91cb8f"
+  },
   "scripts/build_teaching_pages.py": {
-    "bytes": 3330,
-    "sha256": "db9fb50b6fd64da010454f37e67176687112dd7fe5becbc8113cc40b0bc079c8"
+    "bytes": 4267,
+    "sha256": "95c2736c3926f6a52a44260d78a76a9befc2076227881819f8337845a7afb9a0"
   },
   "scripts/check_markdown.mjs": {
     "bytes": 2156,

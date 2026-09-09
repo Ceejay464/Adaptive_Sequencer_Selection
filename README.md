@@ -1,15 +1,35 @@
-# Game Theory Tools · COMSCI/ECON 206
-**Computational Microeconomics · Duke Kunshan University · Autumn 2026**
+<div align="center">
 
-**Instructor: Prof. Luyao Zhang**
+# Game Theory Tools
 
-How do strategic predictions change when we add a sequence of moves or private information? This cumulative teaching repository starts with **Nash → Selten → Harsanyi**. Predict the answer, run a small model, change one assumption, and explain the result through economics, computer science and behavioral science.
+### From Nash to Selten to Harsanyi
 
-**Repository:** [sunshineluyao/gt-tools-demos](https://github.com/sunshineluyao/gt-tools-demos). This is repository 1: reusable tools and notebooks. PS1 proposal templates and project demos belong in separate repositories.
+**COMSCI/ECON 206 · Computational Microeconomics**
+
+Duke Kunshan University · Autumn 2026 · **Prof. Luyao Zhang**
+
+[![Teach: matrices](docs/assets/teach-matrices.svg)](docs/01_Matrix_Games_Demo.md)
+[![Teach: trees and types](docs/assets/teach-trees.svg)](docs/02_Trees_and_Information_Demo.md)
+[![Open notebook 01 in Colab](docs/assets/colab-01.svg)](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb)
+[![Open notebook 02 in Colab](docs/assets/colab-02.svg)](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb)
+[![Download repository ZIP](docs/assets/download.svg)](https://github.com/sunshineluyao/gt-tools-demos/archive/refs/heads/main.zip)
+
+[![Notebook checks](https://github.com/sunshineluyao/gt-tools-demos/actions/workflows/notebooks.yml/badge.svg?branch=main)](https://github.com/sunshineluyao/gt-tools-demos/actions/workflows/notebooks.yml)
+
+[Start teaching](#teach-directly-from-github) · [Choose a tool](#choose-a-tool) · [Game cards](#game-cards) · [Classroom guide](docs/Wednesday_UI_Demo.md) · [References & licenses](#software-and-licenses)
+
+</div>
+
+![Three teaching models: a payoff matrix selects mutual defection; an entry tree selects entry and accommodation; a private-cost tree links indistinguishable nodes with information sets I1, I2 and I3.](docs/assets/game-theory-hero.svg)
+
+**Predict. Solve. Change one assumption. Explain.** Explore how timing and private information change strategic predictions, then interpret the result through economics, computer science and behavioral science. The hero compares three distinct classroom examples; complete assumptions and payoff tables appear below.
+
+This cumulative repository contains reusable tools and notebooks. **Week 3 has exactly two notebooks**, both with saved results for classroom presentation. PS1 proposal templates and project demos belong in separate repositories.
 
 ## Teach directly from GitHub
 
-**No installation or execution is needed to present the saved demonstrations.** Read the tables, formulas and figures in either notebook, or use the code-free teaching pages below. Live parameter controls are available when you run the notebooks in Colab.
+> [!TIP]
+> **Present now:** open either teaching page to show the actual saved tables, formulas and figures. **Experiment live:** open its Colab notebook, run all cells, and change the controls.
 
 | Topic | Read-only teaching page | Executed notebook | Interactive Colab |
 |---|---|---|---|
@@ -29,7 +49,7 @@ Saved comparisons include coordination before/after a payoff change, an entry ga
 
 ## Run in Google Colab
 
-1. Download either `.ipynb` above. Open [Google Colab](https://colab.research.google.com/), choose **File → Upload notebook**, and upload it.
+1. Choose **Colab 01** or **Colab 02** above. To keep your edits, use **File → Save a copy in Drive**. Alternatively, download an `.ipynb` and use **File → Upload notebook** in [Google Colab](https://colab.research.google.com/).
 2. Use a **CPU** runtime. Run the setup cell before imports, then run all cells. No API key, GPU or repository clone is required.
 3. If installation asks for a restart, restart and run all cells again. PyGambit can compile from source on Linux: allow several minutes and run that setup **before class**. QuantEcon's first solver call may also take longer while routines compile.
 4. Change controls and click the notebook's solve button. If widgets do not render, use the documented ordinary Python function calls. Rerun widget cells after reopening a saved notebook.
@@ -42,19 +62,30 @@ Saved comparisons include coordination before/after a payoff change, an entry ga
 
 The instructor supplied two earlier Colab links: [legacy notebook A](https://colab.research.google.com/drive/1QE87i6p3RR9vmYgBMTruHZ8cQy3M18oW?usp=sharing) and [legacy notebook B](https://colab.research.google.com/drive/1d4Na-1usHB7_t33ywAExP4sROUmBKftR?usp=sharing). Their contents were not accessible during this revision. They are retained for provenance; the two notebooks in this repository are the current, self-contained teaching examples.
 
+<a id="choose-a-tool"></a>
 ## Choose the model, then the software
 
 ```mermaid
 flowchart TD
-    A[What does the model require?] --> B{Small matrix or game tree?}
-    B -->|Payoff matrix| C{Known payoffs or private types?}
-    C -->|Known payoffs| D[QuantEcon and Nashpy: notebook 01]
-    C -->|Private types| E[PyGambit: Harsanyi model in notebook 02]
-    B -->|Observed sequential moves| F[PyGambit: entry tree in notebook 02]
-    F --> G[Check subgame credibility by backward induction]
-    A -->|Draw and inspect a game| H[Gambit desktop UI; GTE after access check]
-    A -->|Learning or experiments| I[Future tools: folders reserved below]
+    Q{"Which game structure?"} -->|"Simultaneous; known payoffs"| M["Payoff matrix"]
+    Q -->|"Observed sequential moves"| T["Entry tree"]
+    Q -->|"Private types"| B["Types and information sets"]
+    M --> N1["Notebook 01: QuantEcon + Nashpy"]
+    T --> N2["Notebook 02: Gambit / PyGambit"]
+    B --> N2
+    N1 --> C1["Check unilateral deviations"]
+    N2 --> C2["Check continuation or type incentives"]
+    classDef question fill:#F5F7FB,stroke:#52677C,color:#18324A,stroke-width:2px;
+    classDef model fill:#FFFFFF,stroke:#CBD5E1,color:#18324A;
+    classDef notebook fill:#EAF0FF,stroke:#315EFB,color:#18324A,stroke-width:2px;
+    classDef check fill:#F5F7FB,stroke:#7254B3,color:#18324A;
+    class Q question;
+    class M,T,B model;
+    class N1,N2 notebook;
+    class C1,C2 check;
 ```
+
+For graphical editing, use the [Gambit / GTE classroom guide](docs/Wednesday_UI_Demo.md). For learning algorithms, simulations and participant experiments, consult the [future-tool inventory](#software-and-licenses); those folders are reserved for later weeks.
 
 | Timing × information | Representation | Concept and software choice |
 |---|---|---|
@@ -65,6 +96,7 @@ flowchart TD
 
 A **tree is a representation**, not proof that moves are observed. Complete information concerns knowledge of payoff structure; perfect information concerns observation of prior moves. Our private-cost entry tree preserves simultaneous choice through information sets. Nash, Selten and Harsanyi shared the [1994 economics prize](https://www.nobelprize.org/prizes/economic-sciences/1994/summary/) for analysis of equilibria in non-cooperative games.
 
+<a id="game-cards"></a>
 ## Visual game cards
 
 
@@ -100,7 +132,7 @@ $$
 (x^*)^{\mathsf T}By^*\geq(x^*)^{\mathsf T}By\quad\text{for every }y.
 $$
 
-**Baseline result:** both defect; the strategy vectors are $(0,1)$ and $(0,1)$; payoffs are $(1,1)$. The solver outputs below verify this statement.
+**Baseline result:** both defect; the strategy vectors are $(0,1)$ and $(0,1)$; payoffs are $(1,1)$. The [saved notebook 01 results](docs/01_Matrix_Games_Demo.md) verify this statement.
 
 ### Selten · the extensive-form game tree
 
@@ -110,9 +142,16 @@ flowchart TD
     E -->|In| I["Incumbent"]
     I -->|Fight| F["Payoffs: -1, -1"]
     I -->|Accommodate| A["Payoffs: 1, 1"]
+    classDef decision fill:#F5F7FB,stroke:#52677C,color:#18324A,stroke-width:2px;
+    classDef selected fill:#EAF0FF,stroke:#315EFB,color:#18324A,stroke-width:3px;
+    classDef terminal fill:#FFFFFF,stroke:#CBD5E1,color:#18324A;
+    class E decision;
+    class I,A selected;
+    class O,F terminal;
+    linkStyle 1,3 stroke:#315EFB,stroke-width:3px;
 ```
 
-Payoffs are ordered (Entrant, Incumbent). Pure Nash profiles are (Out, Fight) and (In, Accommodate). Backward induction removes the non-credible Fight threat: after entry the incumbent prefers 1 to −1, so the unique baseline SPNE is (In, Accommodate).
+The thick blue route marks the baseline SPNE. Payoffs are ordered (Entrant, Incumbent). Pure Nash profiles are (Out, Fight) and (In, Accommodate). Backward induction removes the non-credible Fight threat: after entry the incumbent prefers 1 to −1, so the unique baseline SPNE is (In, Accommodate).
 
 ### Harsanyi · types and information sets
 
@@ -127,6 +166,11 @@ flowchart TD
     L -.- H
     LE -.- LO
     HE -.- HO
+    classDef chance fill:#F5F7FB,stroke:#52677C,color:#18324A,stroke-width:2px;
+    classDef player fill:#FFFFFF,stroke:#315EFB,color:#18324A,stroke-width:2px;
+    class N chance;
+    class L,H,LE,LO,HE,HO player;
+    linkStyle 6,7,8 stroke:#7254B3,stroke-width:3px,stroke-dasharray:5;
 ```
 
 **Dashed connections identify information sets, not actions.** I1 joins Firm 1's nodes because it does not observe the cost. I2 and I3 each hide Firm 1's action from Firm 2. They remain separate because Firm 2 knows its own type. The diagram shows the information structure; the following two tables give its terminal payoffs.
@@ -178,6 +222,7 @@ Use the [Wednesday walkthrough](docs/Wednesday_UI_Demo.md) with the ready-to-ope
 
 **Access note:** GTE's source repository documents a legacy Flash GUI. Live builder operation could not be verified in this environment. Preflight the supplied URLs before class; the classroom walkthrough uses Gambit desktop and exported files if GTE does not render. No Flash installation is part of this package.
 
+<a id="software-and-licenses"></a>
 ## Software inventory, licenses and future folders
 
 Upstream license texts for the listed tools are copied in [`references/licenses/`](references/licenses/); the linked upstream repositories remain authoritative. These are **software licenses**, separate from the licenses of associated papers or the instructor's original materials.
@@ -197,6 +242,7 @@ Upstream license texts for the listed tools are copied in [`references/licenses/
 
 For future work: use OpenSpiel for game algorithms; PettingZoo for environment interfaces; RLlib for training; Axelrod for repeated-dilemma tournaments; Mesa for agent-based simulations; oTree for designed participant experiments. These are introductions to reserved tools, not executable additions this week. Consult the relevant upstream repository's citation instructions when a future notebook uses it.
 
+<a id="references"></a>
 ## Papers, actual software use and required citations
 
 These teaching examples are small original illustrations aligned with the class slides. They **do not reproduce the experiments** in the research papers below. The distinction between software papers, actual research use and tutorials is intentional.
@@ -234,15 +280,20 @@ Select that environment as your Jupyter kernel. Linux requires a C++ compiler fo
 
 Both notebooks have passed complete local execution and **17 model/presentation checks**. **48 math expressions** passed strict KaTeX typesetting, and **3 Mermaid diagrams** passed parsing. Actual execution records are in [`outputs/`](outputs/). The notebooks include reference outputs, parameter-editing functions and widgets. Validation uses local Python execution and callback checks; it does not claim a remote Colab browser session, a student-account access check or a live Gambit/GTE GUI test. The [GitHub Actions workflow](https://github.com/sunshineluyao/gt-tools-demos/actions/workflows/notebooks.yml) independently executes both notebooks with standard Jupyter kernels after each push; consult that run for hosted results. Independent checks cover payoff orientation, a mixed equilibrium, off-path credibility, ties and type-specific incentives. Only the named baseline packages were installed; future tools were not.
 
-## Repository contents and maintenance
+<a id="repository-map"></a>
+## Repository map
 
-- `notebooks/`: this week's two runnable notebooks and empty future folders.
-- `examples/`: baseline `.nfg` / `.efg` files for the desktop UI.
-- `docs/`: Wednesday classroom guide, setup, two code-free teaching pages and configured Colab links.
-- `references/`: bibliography, upstream license texts and provenance notes.
-- `tests/` and `outputs/`: model checks and the actual validation record.
-- `scripts/`: notebook execution and Colab link configuration.
+| Open | What you will find |
+|---|---|
+| [Notebooks](notebooks/) | Two executed notebooks; future tool directories reserved |
+| [Classroom guide](docs/Wednesday_UI_Demo.md) | Suggested 75-minute practice block, GUI walkthrough and exit ticket |
+| [Example games](examples/) | Ready-to-open Gambit `.nfg` and `.efg` files |
+| [Setup](docs/SETUP.md) | Environment and PyGambit installation guidance |
+| [References](references/) | Bibliography, source notes and upstream license texts |
+| [Validation](outputs/) | Actual execution records and checks |
+| [Visual assets](docs/assets/README.md) | Editable hero, navigation buttons and Mermaid source files |
+| [Maintenance scripts](scripts/) | Execution, teaching-page generation and reproducible graphics |
 
 Keep future folders empty until their teaching week. Append a new notebook with a clear model, assumptions, installation cell, source/license record, editable example and independent correctness check. Update this README's inventory and `CHANGELOG.md` when releasing it.
 
-The original teaching content has no newly selected public license in this revision; see [`LICENSE_POLICY.md`](LICENSE_POLICY.md). Upstream package licenses continue to apply to those packages. The instructor can select the course-content license when publishing the repository.
+The original teaching content has no newly selected public license in this revision; see [`LICENSE_POLICY.md`](LICENSE_POLICY.md). Upstream package licenses continue to apply to those packages. A future course-content license can be added by the instructor.

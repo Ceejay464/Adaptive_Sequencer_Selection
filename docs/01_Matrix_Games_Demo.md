@@ -1,3 +1,10 @@
+[Course home](../README.md) · [Classroom guide](Wednesday_UI_Demo.md) · [Next: trees and private information](02_Trees_and_Information_Demo.md)
+
+[![Open notebook 01 in Colab](assets/colab-01.svg)](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb)
+
+[View annotated source and saved outputs](../notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb)
+
+> [!TIP]
 > **Presentation mode:** actual saved notebook outputs, with code omitted. Read straight through; no installation or runtime is needed.
 
 
@@ -182,3 +189,8 @@ The widgets are for a live Colab/Jupyter session. The saved experiment immediate
 - API documentation: [Nashpy](https://nashpy.readthedocs.io/en/stable/) · [QuantEcon game theory](https://quanteconpy.readthedocs.io/en/latest/game_theory.html).
 
 **Both libraries use the MIT license.** The repository README links their upstream license files. The matrices here are small classroom illustrations, not empirical measurements or reproductions of the papers' experiments.
+
+
+---
+
+[Course home](../README.md) · [Next: trees and private information](02_Trees_and_Information_Demo.md) · [Experiment in Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb)

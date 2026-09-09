@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="235" height="42" viewBox="0 0 235 42" role="img" aria-labelledby="title description">
+<title id="title">Teach: trees + types</title>
+<desc id="description">Navigation link: Teach: trees + types</desc>
+<g font-family="DejaVu Sans, Arial, sans-serif" stroke-linecap="round" stroke-linejoin="round">
+
+<rect x="1" y="1" width="233" height="40" rx="8" fill="#315EFB" stroke="#315EFB" stroke-width="1.5"/>
+<path d="M 23 12 V 19 M 16 28 V 23 L 23 19 L 30 23 V 28" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<text x="45" y="27" font-size="15" font-weight="700" text-anchor="start" fill="#FFFFFF">Teach: trees + types</text>
+</g></svg>

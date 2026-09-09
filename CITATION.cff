@@ -4,7 +4,7 @@ title: "COMSCI/ECON 206: Game Theory Tools Notebooks"
 authors:
   - family-names: Zhang
     given-names: Luyao
-version: 0.3.0
+version: 0.3.1
 date-released: 2026-09-09
 type: software
 repository-code: "https://github.com/sunshineluyao/gt-tools-demos"

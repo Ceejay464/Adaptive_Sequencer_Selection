@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.1 · 2026-09-09 · Visual and navigation refresh
+
+- Added an original editable SVG hero: payoff matrix, credible continuation and explicit information sets.
+- Added self-hosted GitHub-safe teaching, Colab and download buttons, plus the live notebook-check badge.
+- Unified the three Mermaid diagrams with labeled, high-contrast visual roles.
+- Added navigation to both generated teaching pages and the classroom guide.
+- Included reproducible SVG sources, a semantic figure manifest and visual provenance.
+- Preserved notebook calculations, saved outputs, references and empty future-tool folders.
+
 ## 0.3.0 · 2026-09-09 · GitHub classroom release
 
 - Published to `sunshineluyao/gt-tools-demos` with direct Colab links.

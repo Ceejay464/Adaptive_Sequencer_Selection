@@ -1,3 +1,10 @@
+[Course home](../README.md) · [Classroom guide](Wednesday_UI_Demo.md) · [Review: matrix games](01_Matrix_Games_Demo.md)
+
+[![Open notebook 02 in Colab](assets/colab-02.svg)](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb)
+
+[View annotated source and saved outputs](../notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb)
+
+> [!TIP]
 > **Presentation mode:** actual saved notebook outputs, with code omitted. Read straight through; no installation or runtime is needed.
 
 
@@ -232,3 +239,8 @@ Use the Colab **Files** sidebar to download files from `game_exports/`. No separ
 - [PyGambit API](https://gambitproject.readthedocs.io/en/stable/pygambit.html) · [Gambit GUI equilibrium guide](https://gambitproject.readthedocs.io/en/stable/gui.nash.html).
 
 **Gambit/PyGambit: GPL-2.0-or-later. GTE: GPL-3.0.** These are separate projects; installing PyGambit does not install either a desktop GUI or GTE.
+
+
+---
+
+[Course home](../README.md) · [Review: matrix games](01_Matrix_Games_Demo.md) · [Experiment in Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb)

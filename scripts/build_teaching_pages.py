@@ -28,7 +28,16 @@ for path in sorted(ROOT.glob('notebooks/*/*.ipynb'),key=lambda p:p.name):
     nb=nbformat.read(path,as_version=4)
     if any(c.cell_type=='code' and not c.execution_count for c in nb.cells):
         raise ValueError('Execute every code cell before generating a teaching page.')
-    chunks=['> **Presentation mode:** actual saved notebook outputs, with code omitted. Read straight through; no installation or runtime is needed.\n']
+    notebook_url='https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/'+path.relative_to(ROOT).as_posix()
+    number='01' if path.name.startswith('01_') else '02'
+    other='02_Trees_and_Information_Demo.md' if number=='01' else '01_Matrix_Games_Demo.md'
+    other_label='Next: trees and private information' if number=='01' else 'Review: matrix games'
+    chunks=[
+        f'[Course home](../README.md) · [Classroom guide](Wednesday_UI_Demo.md) · [{other_label}]({other})\n\n'
+        f'[![Open notebook {number} in Colab](assets/colab-{number}.svg)]({notebook_url})\n\n'
+        f'[View annotated source and saved outputs](../{path.relative_to(ROOT).as_posix()})\n\n'
+        '> [!TIP]\n> **Presentation mode:** actual saved notebook outputs, with code omitted. Read straight through; no installation or runtime is needed.\n'
+    ]
     asset_dir=ROOT/'docs/assets'
     for ci,cell in enumerate(nb.cells):
         if cell.cell_type=='markdown':
@@ -64,5 +73,7 @@ for path in sorted(ROOT.glob('notebooks/*/*.ipynb'),key=lambda p:p.name):
                 chunks.append(data['text/plain'])
     # Notebook links remain canonical; local figure assets use relative paths.
     output=ROOT/'docs'/TARGETS[path.name]
-    output.write_text('\n\n'.join(chunks)+'\n')
+    chunks.append(f'---\n\n[Course home](../README.md) · [{other_label}]({other}) · [Experiment in Colab]({notebook_url})')
+    # Preserve paragraph separation without Markdown trailing-space escapes.
+    output.write_text('\n\n'.join(chunks).replace('  \n','\n\n')+'\n')
     print(output.relative_to(ROOT))
