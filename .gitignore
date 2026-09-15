@@ -8,3 +8,6 @@ game_exports/
 
 outputs/jupyter_run/
 node_modules/
+dist/
+outputs/three_lens_desktop.png
+outputs/three_lens_mobile.png

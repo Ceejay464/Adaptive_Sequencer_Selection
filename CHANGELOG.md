@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0 · 2026-09-15 · Three-Lens Studio
+
+- Added a zero-configuration Vercel tutorial that makes Strategic Thinking, Interdisciplinary Contribution, and Mechanism Design observable.
+- Added a structure gate requiring at least two players and at least two feasible strategies per player, followed by Nash/Selten/Harsanyi model triage and a 2×2 pure-Nash checker.
+- Added a dimension-by-dimension contribution map, abstract sentence-two gap check, and human-verified generative-AI literature stress-test protocol.
+- Added an executed school-choice notebook comparing the Boston mechanism and student-proposing deferred acceptance through game-theory, social-choice, and mechanism-design personas.
+- Added pseudocode, Python algorithms, round histories, matching animations, a blocking-pair counterexample, and a Boston reporting-manipulation counterexample.
+- Replaced fragile payoff-matrix TeX with readable array notation and replaced Markdown-sensitive bare-star superscripts with explicit `\\star` notation.
+- Added static-build, algorithm, source-structure, Markdown, mobile/desktop browser, clipping, and interaction checks.
+
 ## 0.3.1 · 2026-09-09 · Visual and navigation refresh
 
 - Added an original editable SVG hero: payoff matrix, credible continuation and explicit information sets.

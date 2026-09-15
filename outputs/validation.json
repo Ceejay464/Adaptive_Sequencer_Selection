@@ -1,6 +1,6 @@
 {
-  "release": "0.3.0",
-  "date": "2026-09-09",
+  "release": "0.4.0",
+  "date": "2026-09-15",
   "repository": "https://github.com/sunshineluyao/gt-tools-demos",
   "python": "3.12.14",
   "platform": "Linux x86_64",
@@ -32,17 +32,26 @@
       "method": "all cells executed in a fresh local Python process; real outputs captured in display order",
       "remote_colab_tested": false,
       "browser_widget_render_tested": false
+    },
+    {
+      "notebook": "notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb",
+      "status": "passed",
+      "code_cells": 5,
+      "execution_seconds": 0.14,
+      "method": "all cells executed in a fresh local Python process; real outputs captured in display order",
+      "remote_colab_tested": false,
+      "browser_widget_render_tested": false
     }
   ],
   "local_tests": {
-    "passed": 17,
+    "passed": 27,
     "bayesian_parameter_combinations": 27
   },
   "math_and_mermaid": {
-    "math_expressions": 48,
+    "math_expressions": 46,
     "mermaid_diagrams": 3,
     "status": "passed",
-    "method": "KaTeX strict typesetting and Mermaid parser; no live browser claim",
+    "method": "KaTeX strict typesetting, Markdown-sensitive superscript guard, and Mermaid parser",
     "katex_version": "0.18.7"
   },
   "html_conversion": [
@@ -57,8 +66,26 @@
       "html_conversion": "passed",
       "tables": 12,
       "embedded_images": 7
+    },
+    {
+      "notebook": "03_School_Choice_Three_Perspectives.ipynb",
+      "html_conversion": "passed",
+      "tables": 2,
+      "embedded_images": 0,
+      "accessible_html_animations": 2,
+      "reduced_motion_fallback": true
     }
   ],
+  "web_tutorial": {
+    "build": "passed",
+    "javascript_algorithm_checks": "passed",
+    "browser_interactions": "passed",
+    "desktop_viewport": "1440x1000",
+    "mobile_viewport": "390x844",
+    "horizontal_overflow": false,
+    "clipped_panels": false,
+    "external_runtime_dependencies": 0
+  },
   "remote_colab_browser_session": false,
   "gte_live_builder_verified": false,
   "hosted_tests": "Standard Jupyter execution is configured in .github/workflows/notebooks.yml. Consult the GitHub Actions run for hosted results; this record describes local checks before publication."

@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "label": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "geometry": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "clipped": []
+      }
+    },
+    {
+      "label": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "geometry": {
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "clipped": []
+      }
+    }
+  ],
+  "errors": [],
+  "method": "Playwright Chromium at desktop and mobile widths with reduced motion"
+}
