@@ -1,9 +1,9 @@
 # Setup and classroom preflight
 
 ## Google Colab
-Upload either notebook and use CPU. Run its first cell before class. The notebook installs its named package versions and reports them. PyGambit 16.7.0 may compile from source on Linux; the first build can take several minutes. Do not interpret a quiet compiler as a finished installation. Restart if Colab requests it after dependency changes.
+Open any of the three linked notebooks and use CPU. Run its first code cell before class. Notebooks 01 and 02 install their named package versions and report them. Notebook 03 uses the standard scientific stack already supplied by Colab. PyGambit 16.7.0 may compile from source on Linux; the first build can take several minutes. Do not interpret a quiet compiler as a finished installation. Restart if Colab requests it after dependency changes.
 
-After imports, run the baseline examples before editing controls. In notebook 01, the two libraries must agree on Defect/Defect and half/half matching pennies. In notebook 02, check the entry and private-cost baseline answers printed in the notebook. The Files sidebar contains exported games under `game_exports/`.
+After imports, run the baseline examples before editing controls. In notebook 01, the two libraries must agree on Defect/Defect and half/half matching pennies. In notebook 02, check the entry and private-cost baseline answers printed in the notebook. In notebook 03, confirm the Boston blocking pair `Bo + Aurora`, the absence of a blocking pair under deferred acceptance, and the saved round animations. The Files sidebar contains exported games under `game_exports/` when notebook 02 runs.
 
 Widgets require an active Python kernel. If they do not appear, rerun the imports and widget cell, or call `explore_matrix(A, B)`, `explore_entry(...)` or `explore_bayesian(...)` directly. A saved notebook does not keep a remote Python session running.
 
@@ -34,5 +34,16 @@ python scripts/configure_colab_links.py --repository sunshineluyao/gt-tools-demo
 
 This updates the README links locally. Commit that update, then check each link in a student account. Private repository access depends on the student's GitHub/Colab authorization. Creating links does not create a repository, upload a notebook or invite students.
 
+## Three-Lens Studio
 
-For presentation without a runtime, open [Matrix Games Demo](01_Matrix_Games_Demo.md) or [Trees and Information Demo](02_Trees_and_Information_Demo.md). Both pages are generated from the executed notebooks.
+The web tutorial requires Node.js 20 or later for its build step and no browser-side dependency:
+
+```bash
+npm test
+npm run build
+python -m http.server 4173 --directory dist
+```
+
+Open `http://localhost:4173`. For hosting, use the zero-configuration [Vercel Git-import guide](DEPLOY_VERCEL.md). No environment variables are required and form content remains in the browser.
+
+For presentation without a Python runtime, open [Matrix Games Demo](01_Matrix_Games_Demo.md), [Trees and Information Demo](02_Trees_and_Information_Demo.md), or the built Three-Lens Studio. The first two pages are generated from executed notebooks.

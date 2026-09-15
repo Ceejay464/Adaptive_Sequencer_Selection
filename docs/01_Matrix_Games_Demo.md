@@ -35,12 +35,7 @@ The row player chooses a row; the column player chooses a column. Each cell show
 | Cooperate | (3, 3) | (0, 5) |
 | Defect | (5, 0) | (1, 1) |
 
-The two payoff arrays are
-
-$$
-A=\begin{pmatrix}3&0\\5&1\end{pmatrix},\qquad
-B=\begin{pmatrix}3&5\\0&1\end{pmatrix}.
-$$
+Using row-major array notation, the payoff arrays are `A = [[3, 0], [5, 1]]` and `B = [[3, 5], [0, 1]]`. This is also the exact Python input and remains readable in Markdown clients without matrix typesetting.
 
 A mixed strategy is a probability vector. Write the row strategy as $x=(x_0,x_1)$ and the column strategy as $y=(y_0,y_1)$. Their expected payoffs are
 
@@ -48,14 +43,14 @@ $$
 u_1(x,y)=x^{\mathsf T}Ay,\qquad u_2(x,y)=x^{\mathsf T}By.
 $$
 
-A Nash equilibrium is a pair $(x^*,y^*)$ at which neither player gains by deviating alone:
+A Nash equilibrium is a pair $(x^{\star},y^{\star})$ at which neither player gains by deviating alone:
 
 $$
-(x^*)^{\mathsf T}Ay^*\geq x^{\mathsf T}Ay^*\quad\text{for every }x,
+(x^{\star})^{\mathsf T}Ay^{\star}\geq x^{\mathsf T}Ay^{\star}\quad\text{for every }x,
 $$
 
 $$
-(x^*)^{\mathsf T}By^*\geq(x^*)^{\mathsf T}By\quad\text{for every }y.
+(x^{\star})^{\mathsf T}By^{\star}\geq(x^{\star})^{\mathsf T}By\quad\text{for every }y.
 $$
 
 **Baseline result:** both defect; the strategy vectors are $(0,1)$ and $(0,1)$; payoffs are $(1,1)$. The solver outputs below verify this statement.

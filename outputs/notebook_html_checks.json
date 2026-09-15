@@ -10,5 +10,13 @@
     "html_conversion": "passed",
     "tables": 12,
     "embedded_images": 7
+  },
+  {
+    "notebook": "03_School_Choice_Three_Perspectives.ipynb",
+    "html_conversion": "passed",
+    "tables": 2,
+    "embedded_images": 0,
+    "accessible_html_animations": 2,
+    "reduced_motion_fallback": true
   }
 ]

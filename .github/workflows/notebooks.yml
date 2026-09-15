@@ -9,13 +9,16 @@ permissions:
 jobs:
   notebooks:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Install the tested teaching environment
         env:
           CC: gcc
@@ -26,6 +29,14 @@ jobs:
         run: python -m pip install -r requirements.txt -r requirements-dev.txt
       - name: Check models and classroom artifacts
         run: python -m unittest discover -s tests -v
+      - name: Check tutorial logic and static Vercel build
+        run: npm run validate
+      - name: Check Markdown, diagrams, and browser rendering
+        run: |
+          npm --prefix validation install --ignore-scripts
+          node scripts/check_markdown.mjs
+          ./validation/node_modules/.bin/playwright install chromium
+          node scripts/check_browser.mjs
       - name: Execute every cell with standard Jupyter kernels
         run: |
           python -m ipykernel install --user --name econ206-ci

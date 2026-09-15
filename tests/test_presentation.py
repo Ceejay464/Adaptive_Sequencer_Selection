@@ -58,5 +58,15 @@ class PresentationTests(unittest.TestCase):
         self.assertTrue(all(c.outputs for c in demos))
         self.assertTrue(all(not any(o.output_type=='error' for o in c.outputs) for c in demos))
 
+    def test_school_choice_animations_are_saved_and_described(self):
+        path=ROOT/'notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb'
+        notebook=nbformat.read(path,as_version=4)
+        html_outputs=[o['data']['text/html'] for c in notebook.cells for o in c.get('outputs',[])
+                      if 'text/html' in o.get('data',{}) and 'matching-animation' in o['data']['text/html']]
+        self.assertEqual(len(html_outputs),2)
+        self.assertTrue(all('role="img"' in output for output in html_outputs))
+        self.assertTrue(all('aria-label=' in output and 'animated matching rounds' in output for output in html_outputs))
+        self.assertTrue(all('prefers-reduced-motion' in output for output in html_outputs))
+
 if __name__=='__main__':
     unittest.main()

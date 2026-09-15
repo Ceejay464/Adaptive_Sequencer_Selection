@@ -159,5 +159,46 @@ class TreeTests(unittest.TestCase):
         self.assertEqual(seen,[('entry',(2,1,1)),('bayes',(.8,4,1))])
 
 
+class SchoolChoiceTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.notebook, cls.ns = load_notebook('notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb')
+
+    def setUp(self):
+        ns = self.ns
+        self.args = (
+            ns['STUDENTS'], ns['SCHOOLS'], ns['CAPACITIES'],
+            ns['PREFERENCES'], ns['PRIORITIES'],
+        )
+
+    def test_boston_and_deferred_acceptance_paths(self):
+        boston = self.ns['run_boston'](*self.args)
+        deferred = self.ns['run_deferred_acceptance'](*self.args)
+        self.assertEqual(boston['by_student']['Bo'], 'Cedar')
+        self.assertEqual(deferred['by_student']['Bo'], 'Aurora')
+        self.assertEqual(len(boston['history']), 4)
+        self.assertGreaterEqual(len(deferred['history']), 4)
+
+    def test_stability_counterexample(self):
+        ns = self.ns
+        boston = ns['run_boston'](*self.args)
+        deferred = ns['run_deferred_acceptance'](*self.args)
+        boston_blocks = ns['blocking_pairs'](boston, *self.args)
+        deferred_blocks = ns['blocking_pairs'](deferred, *self.args)
+        self.assertEqual(boston_blocks, [('Bo', 'Aurora')])
+        self.assertEqual(deferred_blocks, [])
+
+    def test_boston_reporting_counterexample(self):
+        ns = self.ns
+        truthful = ns['run_boston'](*self.args)
+        reports = {student: choices.copy() for student, choices in ns['PREFERENCES'].items()}
+        reports['Bo'] = ['Aurora', 'Beacon', 'Cedar']
+        strategic = ns['run_boston'](
+            ns['STUDENTS'], ns['SCHOOLS'], ns['CAPACITIES'], reports, ns['PRIORITIES']
+        )
+        true_rank = {school: rank for rank, school in enumerate(ns['PREFERENCES']['Bo'])}
+        self.assertLess(true_rank[strategic['by_student']['Bo']], true_rank[truthful['by_student']['Bo']])
+
+
 if __name__=='__main__':
     unittest.main()

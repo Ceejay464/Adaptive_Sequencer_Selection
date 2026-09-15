@@ -3,6 +3,9 @@ test_matching_pennies (test_examples.MatrixTests.test_matching_pennies) ... ok
 test_matrix_widgets_pass_edited_payoffs (test_examples.MatrixTests.test_matrix_widgets_pass_edited_payoffs) ... ok
 test_prisoners_dilemma (test_examples.MatrixTests.test_prisoners_dilemma) ... ok
 test_tied_game_and_input_validation (test_examples.MatrixTests.test_tied_game_and_input_validation) ... ok
+test_boston_and_deferred_acceptance_paths (test_examples.SchoolChoiceTests.test_boston_and_deferred_acceptance_paths) ... ok
+test_boston_reporting_counterexample (test_examples.SchoolChoiceTests.test_boston_reporting_counterexample) ... ok
+test_stability_counterexample (test_examples.SchoolChoiceTests.test_stability_counterexample) ... ok
 test_backward_induction_preserves_ties (test_examples.TreeTests.test_backward_induction_preserves_ties) ... ok
 test_bayesian_baseline_and_prior_change (test_examples.TreeTests.test_bayesian_baseline_and_prior_change) ... ok
 test_bayesian_information_sets (test_examples.TreeTests.test_bayesian_information_sets) ... ok
@@ -14,9 +17,16 @@ test_every_code_cell_has_successful_saved_output_state (test_presentation.Presen
 test_figures_are_embedded_and_type_information_is_present (test_presentation.PresentationTests.test_figures_are_embedded_and_type_information_is_present) ... ok
 test_mermaid_sources_encode_information_sets (test_presentation.PresentationTests.test_mermaid_sources_encode_information_sets) ... ok
 test_saved_changed_parameter_examples (test_presentation.PresentationTests.test_saved_changed_parameter_examples) ... ok
+test_school_choice_animations_are_saved_and_described (test_presentation.PresentationTests.test_school_choice_animations_are_saved_and_described) ... ok
 test_teaching_pages_have_tables_figures_and_no_python_blocks (test_presentation.PresentationTests.test_teaching_pages_have_tables_figures_and_no_python_blocks) ... ok
+test_ai_stress_test_preserves_human_verification (test_three_lens.ThreeLensReleaseTests.test_ai_stress_test_preserves_human_verification) ... ok
+test_notebook_covers_personas_algorithms_and_primary_sources (test_three_lens.ThreeLensReleaseTests.test_notebook_covers_personas_algorithms_and_primary_sources) ... ok
+test_readme_avoids_markdown_sensitive_superscripts (test_three_lens.ThreeLensReleaseTests.test_readme_avoids_markdown_sensitive_superscripts) ... ok
+test_release_manifest_tracks_new_student_artifacts (test_three_lens.ThreeLensReleaseTests.test_release_manifest_tracks_new_student_artifacts) ... ok
+test_static_site_has_three_complete_modules (test_three_lens.ThreeLensReleaseTests.test_static_site_has_three_complete_modules) ... ok
+test_vercel_import_is_zero_configuration (test_three_lens.ThreeLensReleaseTests.test_vercel_import_is_zero_configuration) ... ok
 
 ----------------------------------------------------------------------
-Ran 17 tests in 4.031s
+Ran 27 tests in 3.957s
 
 OK
