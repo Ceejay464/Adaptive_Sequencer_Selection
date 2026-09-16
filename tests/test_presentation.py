@@ -8,6 +8,24 @@ import nbformat
 ROOT=Path(__file__).resolve().parents[1]
 
 class PresentationTests(unittest.TestCase):
+    def test_notebooks_use_compact_code_and_colab_safe_pseudocode_tables(self):
+        budgets = {
+            '01_QuantEcon_Nashpy_Interactive.ipynb': 176,
+            '02_Gambit_PyGambit_Interactive.ipynb': 302,
+            '03_School_Choice_Three_Perspectives.ipynb': 173,
+        }
+        for path in ROOT.glob('notebooks/*/*.ipynb'):
+            notebook = nbformat.read(path, as_version=4)
+            code_lines = sum(len(cell.source.splitlines()) for cell in notebook.cells if cell.cell_type == 'code')
+            markdown = '\n'.join(cell.source for cell in notebook.cells if cell.cell_type == 'markdown')
+            self.assertLessEqual(code_lines, budgets[path.name], path.name)
+            self.assertTrue('| Technical cue' in markdown or '| Cue' in markdown or '| Phase' in markdown, path.name)
+            self.assertIn('→', markdown, path.name)
+        school = nbformat.read(ROOT/'notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb', as_version=4)
+        school_text = '\n'.join(cell.source for cell in school.cells if cell.cell_type == 'markdown')
+        self.assertIn('Boston locks a seat now', school_text)
+        self.assertIn('Amina → Beacon; Bo → Beacon', school_text)
+
     def test_every_code_cell_has_successful_saved_output_state(self):
         for p in ROOT.glob('notebooks/*/*.ipynb'):
             nb=nbformat.read(p,as_version=4)

@@ -23,7 +23,7 @@
       <a href="#contribution">02 Contribution</a>
       <a href="#personas">03 Mechanisms</a>
     </nav>
-    <a class="ghost-button" href="https://github.com/sunshineluyao/gt-tools-demos" target="_blank" rel="noreferrer">GitHub ↗</a>
+    <div class="header-actions"><button id="motion-toggle" class="motion-button" type="button" aria-pressed="false">Pause motion</button><a class="ghost-button" href="https://github.com/sunshineluyao/gt-tools-demos" target="_blank" rel="noreferrer">GitHub ↗</a></div>
   </header>
 
   <main id="main">
@@ -109,18 +109,70 @@
         </article>
       </div>
 
-      <article class="panel matrix-lab">
-        <div class="matrix-copy"><div class="panel-label">QUICK FALSIFICATION</div><h3>Can your proposed Nash profile survive a unilateral deviation?</h3><p>Edit the two payoff numbers in each cell. The checker identifies pure-strategy Nash equilibria, including ties. It does not claim that a game without a pure equilibrium has no mixed equilibrium.</p><div id="nash-result" class="result-pill" aria-live="polite"></div></div>
-        <div class="payoff-wrap">
-          <div class="column-player">Column player</div>
-          <div class="matrix-label top-left">Cooperate</div><div class="matrix-label top-right">Defect</div>
-          <div class="row-player">Row player</div>
-          <div class="matrix-label left-top">Cooperate</div><div class="matrix-label left-bottom">Defect</div>
-          <div class="payoff-cell cell-00"><label>Row<input data-matrix="row" data-cell="00" type="number" value="3"></label><label>Column<input data-matrix="column" data-cell="00" type="number" value="3"></label></div>
-          <div class="payoff-cell cell-01"><label>Row<input data-matrix="row" data-cell="01" type="number" value="0"></label><label>Column<input data-matrix="column" data-cell="01" type="number" value="5"></label></div>
-          <div class="payoff-cell cell-10"><label>Row<input data-matrix="row" data-cell="10" type="number" value="5"></label><label>Column<input data-matrix="column" data-cell="10" type="number" value="0"></label></div>
-          <div class="payoff-cell cell-11"><label>Row<input data-matrix="row" data-cell="11" type="number" value="1"></label><label>Column<input data-matrix="column" data-cell="11" type="number" value="1"></label></div>
+      <article class="panel strategic-lab" id="equilibrium-lab">
+        <header class="strategic-lab-head"><div class="panel-label">THREE REPRESENTATIONS · ONE MODELING DECISION</div><h3>Change the game. Watch the solution concept change.</h3><p>The diagnostic opens the appropriate representation automatically. You can also move between the three lenses and edit every payoff or belief.</p></header>
+        <div class="solution-tabs" role="tablist" aria-label="Strategic solution representations">
+          <button id="solution-tab-nash" role="tab" type="button" data-solution="nash" aria-controls="solution-nash" aria-selected="true"><span>01</span><strong>Nash</strong><small>Matrix · deviations</small></button>
+          <button id="solution-tab-selten" role="tab" type="button" data-solution="selten" aria-controls="solution-selten" aria-selected="false" tabindex="-1"><span>02</span><strong>Selten</strong><small>Tree · backward induction</small></button>
+          <button id="solution-tab-harsanyi" role="tab" type="button" data-solution="harsanyi" aria-controls="solution-harsanyi" aria-selected="false" tabindex="-1"><span>03</span><strong>Harsanyi</strong><small>Types · beliefs</small></button>
         </div>
+
+        <section class="solution-panel matrix-lab" id="solution-nash" role="tabpanel" aria-labelledby="solution-tab-nash">
+          <div class="matrix-copy"><div class="panel-label">NASH · SIMULTANEOUS CHOICES</div><h3>Which cells survive unilateral deviations?</h3><p>Edit all eight payoffs. Then trace the row player’s best replies, the column player’s best replies, and their intersections.</p><button id="trace-nash" class="lab-action" type="button">▶ Trace best responses</button><div class="action-steps" id="nash-steps" aria-label="Nash solution steps"><span data-nash-step="row">1 · Row replies</span><span data-nash-step="column">2 · Column replies</span><span data-nash-step="equilibrium">3 · Intersections</span></div><div id="nash-result" class="result-pill" aria-live="polite"></div></div>
+          <div class="payoff-wrap" aria-label="Editable two-by-two payoff matrix">
+            <div class="column-player">Column player</div>
+            <div class="matrix-label top-left">Cooperate</div><div class="matrix-label top-right">Defect</div>
+            <div class="row-player">Row player</div>
+            <div class="matrix-label left-top">Cooperate</div><div class="matrix-label left-bottom">Defect</div>
+            <div class="payoff-cell cell-00" data-payoff-cell="00"><label>Row<input data-matrix="row" data-cell="00" type="number" value="3"></label><label>Column<input data-matrix="column" data-cell="00" type="number" value="3"></label></div>
+            <div class="payoff-cell cell-01" data-payoff-cell="01"><label>Row<input data-matrix="row" data-cell="01" type="number" value="0"></label><label>Column<input data-matrix="column" data-cell="01" type="number" value="5"></label></div>
+            <div class="payoff-cell cell-10" data-payoff-cell="10"><label>Row<input data-matrix="row" data-cell="10" type="number" value="5"></label><label>Column<input data-matrix="column" data-cell="10" type="number" value="0"></label></div>
+            <div class="payoff-cell cell-11" data-payoff-cell="11"><label>Row<input data-matrix="row" data-cell="11" type="number" value="1"></label><label>Column<input data-matrix="column" data-cell="11" type="number" value="1"></label></div>
+          </div>
+        </section>
+
+        <section class="solution-panel dynamics-lab" id="solution-selten" role="tabpanel" aria-labelledby="solution-tab-selten" hidden>
+          <div class="solution-copy"><div class="panel-label">SELTEN · OBSERVED SEQUENTIAL MOVES</div><h3>Make every continuation credible.</h3><p>Change the three terminal payoff pairs. Backward induction first solves the incumbent’s action after entry, then asks whether the entrant still wants to enter.</p>
+            <div class="terminal-controls" aria-label="Editable terminal payoffs">
+              <fieldset><legend>Stay out</legend><label>Entrant<input data-selten="out-entrant" type="number" value="1"></label><label>Incumbent<input data-selten="out-incumbent" type="number" value="2"></label></fieldset>
+              <fieldset><legend>Fight</legend><label>Entrant<input data-selten="fight-entrant" type="number" value="-1"></label><label>Incumbent<input data-selten="fight-incumbent" type="number" value="-1"></label></fieldset>
+              <fieldset><legend>Accommodate</legend><label>Entrant<input data-selten="accommodate-entrant" type="number" value="2"></label><label>Incumbent<input data-selten="accommodate-incumbent" type="number" value="1"></label></fieldset>
+            </div>
+            <button id="solve-selten" class="lab-action" type="button">▶ Solve backward</button><div id="selten-result" class="solution-result" aria-live="polite"></div>
+          </div>
+          <div class="game-visual">
+            <svg class="entry-tree" viewBox="0 0 620 340" role="img" aria-labelledby="selten-tree-title selten-tree-desc">
+              <title id="selten-tree-title">Sequential entry game</title><desc id="selten-tree-desc">The entrant chooses Stay out or Enter. After entry, the incumbent observes the move and chooses Fight or Accommodate.</desc>
+              <path class="tree-edge" data-tree-edge="out" d="M92 158 C145 118 190 85 230 75"/><path class="tree-edge" data-tree-edge="enter" d="M92 182 C150 210 205 235 248 243"/><path class="tree-edge" data-tree-edge="fight" d="M282 235 C355 215 420 190 485 177"/><path class="tree-edge" data-tree-edge="accommodate" d="M282 255 C355 278 420 300 485 307"/>
+              <g class="tree-node" data-tree-node="entrant"><circle cx="75" cy="170" r="18"/><text x="75" y="174">E</text></g><g class="tree-node" data-tree-node="incumbent"><circle cx="265" cy="247" r="18"/><text x="265" y="251">I</text></g>
+              <text class="edge-label" x="142" y="104">Stay out</text><text class="edge-label" x="145" y="224">Enter</text><text class="edge-label" x="367" y="204">Fight</text><text class="edge-label" x="354" y="294">Accommodate</text>
+              <g class="terminal" data-terminal="out"><circle cx="245" cy="70" r="7"/><text id="selten-payoff-out" x="262" y="75">(1, 2)</text></g><g class="terminal" data-terminal="fight"><circle cx="500" cy="175" r="7"/><text id="selten-payoff-fight" x="517" y="180">(−1, −1)</text></g><g class="terminal" data-terminal="accommodate"><circle cx="500" cy="310" r="7"/><text id="selten-payoff-accommodate" x="517" y="315">(2, 1)</text></g>
+            </svg>
+            <div class="visual-legend"><span><i class="violet-dot"></i> Solve the later choice first</span><span><i class="green-dot"></i> Then select the credible path</span></div>
+          </div>
+        </section>
+
+        <section class="solution-panel dynamics-lab" id="solution-harsanyi" role="tabpanel" aria-labelledby="solution-tab-harsanyi" hidden>
+          <div class="solution-copy"><div class="panel-label">HARSANYI · PRIVATE TYPE + COMMON PRIOR</div><h3>Turn uncertainty into an explicit type space.</h3><p>Nature draws a Tough or Weak incumbent. Each type chooses its own best response; the entrant compares the expected payoff from entry with staying out.</p>
+            <label class="prior-control" for="harsanyi-prior"><span>Common prior: Pr(Tough)</span><output id="harsanyi-prior-output" for="harsanyi-prior">0.40</output><input id="harsanyi-prior" type="range" min="0" max="100" value="40"></label>
+            <div class="bayes-controls">
+              <label>Entrant: Stay out<input id="bayes-out" type="number" value="0"></label><label>Entrant: if Fight<input id="bayes-entry-fight" type="number" value="-1"></label><label>Entrant: if Accommodate<input id="bayes-entry-accommodate" type="number" value="2"></label>
+              <label>Tough: Fight<input id="bayes-tough-fight" type="number" value="2"></label><label>Tough: Accommodate<input id="bayes-tough-accommodate" type="number" value="0"></label><label>Weak: Fight<input id="bayes-weak-fight" type="number" value="-2"></label><label>Weak: Accommodate<input id="bayes-weak-accommodate" type="number" value="1"></label>
+            </div>
+            <div class="lab-action-row"><button id="solve-harsanyi" class="lab-action" type="button">▶ Solve Bayesian plan</button><button id="sample-harsanyi" class="secondary-action" type="button">Draw one type</button></div><div id="harsanyi-result" class="solution-result" aria-live="polite"></div><p id="harsanyi-sample" class="sample-result" aria-live="polite"></p>
+          </div>
+          <div class="game-visual">
+            <svg class="type-tree" viewBox="0 0 620 335" role="img" aria-labelledby="type-tree-title type-tree-desc">
+              <title id="type-tree-title">Harsanyi type-space representation</title><desc id="type-tree-desc">Nature draws the incumbent's private type. Tough and Weak types may choose different actions. The entrant responds to their expected behavior.</desc>
+              <path class="type-edge" data-type-edge="tough" d="M310 68 C275 96 220 112 170 138"/><path class="type-edge" data-type-edge="weak" d="M310 68 C345 96 400 112 450 138"/>
+              <g class="nature-node" data-type-node="nature"><circle cx="310" cy="52" r="22"/><text x="310" y="56">N</text></g>
+              <g class="type-card" data-type-node="tough"><rect x="70" y="135" width="200" height="105" rx="16"/><text class="type-title" x="92" y="165">Tough type</text><text id="harsanyi-tough-prob" x="92" y="191">p = 0.40</text><text class="type-action" id="harsanyi-tough-action" x="92" y="218">Action: ?</text></g>
+              <g class="type-card" data-type-node="weak"><rect x="350" y="135" width="200" height="105" rx="16"/><text class="type-title" x="372" y="165">Weak type</text><text id="harsanyi-weak-prob" x="372" y="191">1 − p = 0.60</text><text class="type-action" id="harsanyi-weak-action" x="372" y="218">Action: ?</text></g>
+              <g class="entrant-decision" data-type-node="entrant"><rect x="180" y="274" width="260" height="44" rx="22"/><text id="harsanyi-entrant-action" x="310" y="301">Entrant decision: ?</text></g><circle id="harsanyi-token" class="type-token" cx="310" cy="52" r="8"/>
+            </svg>
+            <div class="visual-legend"><span><i class="amber-dot"></i> Nature selects a private type</span><span><i class="green-dot"></i> Strategy specifies an action for every type</span></div>
+          </div>
+        </section>
       </article>
     </section>
 
@@ -226,8 +278,8 @@
 
       <article class="mechanism-lab panel">
         <div class="mechanism-head">
-          <div><div class="panel-label">SCHOOL-CHOICE MATCHING LAB</div><h3>Final acceptances versus tentative holds</h3><p>The same students, preferences, school priorities, and capacities produce different paths. Advance one round at a time, then inspect stability and incentives.</p></div>
-          <div class="mechanism-controls"><label for="mechanism-select">Mechanism</label><select id="mechanism-select"><option value="boston">Boston mechanism</option><option value="deferred">Gale–Shapley deferred acceptance</option></select><button id="reset-match" type="button">Reset</button><button id="next-round" class="primary-button" type="button">Next round →</button></div>
+          <div><div class="panel-label">SCHOOL-CHOICE MATCHING LAB</div><h3>Final acceptances versus tentative holds</h3><p>Read every round in three phases: <strong>who proposes → what each school decides → who leaves or continues</strong>. Boston locks accepted students out of later rounds; Gale–Shapley keeps every hold tentative until proposals stop.</p></div>
+          <div class="mechanism-controls"><label for="mechanism-select">Mechanism</label><select id="mechanism-select"><option value="boston">Boston mechanism</option><option value="deferred">Gale–Shapley deferred acceptance</option></select><button id="reset-match" type="button">Reset</button><button id="play-rounds" type="button" aria-pressed="false">▶ Play rounds</button><button id="next-round" class="primary-button" type="button">Next round →</button></div>
         </div>
         <div class="match-layout">
           <div class="preferences-table"><h4>Student preferences</h4><div id="student-preferences"></div><p class="micro-note">All schools use priority Amina ≻ Bo ≻ Chen ≻ Dara. Capacities: Aurora 1, Beacon 1, Cedar 2.</p></div>
@@ -236,7 +288,7 @@
             <div class="student-column" id="student-nodes"></div>
             <div class="school-column" id="school-nodes"></div>
           </div>
-          <div class="round-log"><div class="round-counter" id="round-counter">ROUND 0</div><h4 id="round-title">Start</h4><div id="round-applications"></div><div id="stability-result"></div></div>
+          <div class="round-log"><div class="round-counter" id="round-counter">ROUND 1</div><h4 id="round-title">Round 1</h4><div id="round-applications" aria-live="polite"></div><div id="stability-result"></div></div>
         </div>
         <div class="mechanism-comparison">
           <div><strong>Boston</strong><span>Schools make final acceptances each round.</span><small>Fast and intuitive, but students can benefit from strategic ranking in this example.</small></div>

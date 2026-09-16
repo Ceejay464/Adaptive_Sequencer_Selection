@@ -13,30 +13,36 @@
 
 **Instructor: Prof. Luyao Zhang**
 
-Build a matrix, add a sequence of moves, then add private information.
+Build the smallest model, then add only the structure the research question requires.
 
-**Run:** upload this notebook to Google Colab, select CPU, and run the setup cell first. PyGambit may take several minutes to compile on Linux. Run it before class. Then Run all. The notebook is self-contained and exports games for the separate Gambit desktop application.
-
-| Model | Information | Question | Concept used today |
+| Lens | Ask first | Represent | Change interactively |
 |---|---|---|---|
-| Simultaneous payoff matrix | Complete | Is anyone willing to deviate alone? | Nash equilibrium |
-| Entry game with observed moves | Complete; perfect observation | Is the continuation credible in every subgame? | Subgame-perfect Nash equilibrium |
-| Simultaneous entry with private costs | Incomplete | Is each type choosing optimally given the prior? | Bayesian Nash equilibrium |
+| **Nash** | Can either player gain by deviating alone? | Simultaneous payoff matrix | Matrix payoffs in Notebook 01 |
+| **Selten** | Is every continuation credible after each observed history? | Sequential tree | Fight, accommodate, and entrant payoffs |
+| **Harsanyi** | What type is private, what is believed, and what does each type choose? | Types, prior, and information sets | Prior and both firms' costs |
 
-A tree is a **representation**. Hidden actions can make a tree represent a simultaneous game. A tree with chance is not automatically a Bayesian game: private payoff information and information sets do the work here.
+**Learning loop:** predict → run the baseline → move one control → explain which incentive inequality changed. A tree is only a representation: observed histories support a Selten analysis; private types, priors, and information sets support a Harsanyi analysis.
 
+**Run in Colab:** select CPU, run the setup cell first, then **Runtime → Run all**. PyGambit may compile for several minutes on its first Linux/Colab installation. The saved figures and tables remain readable without running.
 
-**Teach without running:** the baseline and parameter-change examples below have saved tables and figures. You can read them in GitHub without installing anything. Run the notebook in Colab only to use the controls or change the code.
+[Open in Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb) · [Read-only teaching page](https://github.com/sunshineluyao/gt-tools-demos/blob/main/docs/02_Trees_and_Information_Demo.md)
 
-[Open in Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb) · [Read-only teaching page](https://github.com/sunshineluyao/gt-tools-demos/blob/main/docs/02_Trees_and_Information_Demo.md).
+## 1. Nash: verify mutual best responses
 
-## 1. Nash: start with a familiar matrix
-`enumpure_solve` lists pure Nash equilibria. It does not claim to list mixed equilibria. Gambit takes A and B in the usual row/column order.
+`enumpure_solve` lists pure Nash equilibria; it does not claim to list mixed equilibria.
 
+| Cue | Pseudocode | Check |
+|---|---|---|
+| 🧩 Input | `G ← game(A,B)` | Two players, at least two strategies each, complete payoffs |
+| ⚙️ Enumerate | `E ← pure_nash(G)` | Each profile specifies one action for every player |
+| ✓ Verify | `for e in E: test every unilateral deviation` | $u_i(e)\geq u_i(a_i',e_{-i})$ for every player $i$ and action $a_i'$ |
+| → Report | `show actions and payoffs` | Solver output is connected to an interpretable game card |
 
-|  | Row action | Row payoff | Column action | Column payoff |
+Gambit takes `A` and `B` in the usual row/column orientation.
+
+|  | Row action | Column action | Row payoff | Column payoff |
 | --- | --- | --- | --- | --- |
-| 0 | Defect | 1.0 | Defect | 1.0 |
+| 0 | Defect | Defect | 1.0 | 1.0 |
 
 ## 2. A small display helper
 The helper below reads the game we actually construct. Purple dashed lines connect nodes in the same information set. This figure is a notebook visualization; the exported `.efg` file opens as an editable game in the Gambit desktop UI.
@@ -67,24 +73,27 @@ $$
 
 The separate continuation check is essential: a general Nash solver does not automatically certify subgame perfection.
 
-## 3. Selten: credible play after entry
-Baseline: Out gives (0,2); In followed by Fight gives (−1,−1); In followed by Accommodate gives (1,1).
+## 3. Selten: solve the continuation before the initial move
 
-Predict the incumbent's choice after entry. Then work backward to the entrant. A Nash equilibrium of the whole game can contain a threat that would not be optimal if its node were reached.
+Baseline payoffs are Out $(0,2)$, Fight $(-1,-1)$, and Accommodate $(1,1)$.
 
-We use Gambit for **pure Nash enumeration**, and a separate, transparent backward-induction function for **pure SPNE**. In tied games this function retains every pure best response; it does not enumerate all mixed SPNE.
+| Cue | Backward-induction pseudocode | Mathematical decision |
+|---|---|---|
+| 🏁 Terminal values | `read payoffs at every leaf` | No terminal outcome may be omitted |
+| ← Incumbent | `R ← argmax{fight payoff, accommodate payoff}` | Choose every best response after **In**, including ties |
+| ← Entrant | `choose argmax{outside payoff, entry payoff under R}` | Anticipate the credible continuation |
+| ✓ Refine | `SPNE ← strategies optimal in every subgame` | Remove Nash profiles supported by a non-credible threat |
 
+The critical distinction is **Nash checks the whole strategy profile; Selten additionally checks the action that would be optimal after every observed history**. The sliders below let you change all payoff terms that determine this example.
 
 ![Computed game tree from this executed example.](assets/02_Gambit_PyGambit_Interactive_09_00.png)
-
-Pure Nash equilibria of the whole game:
 
 |  | Entrant | Incumbent after In |
 | --- | --- | --- |
 | 0 | Out | Fight |
 | 1 | In | Accommodate |
 
-Pure subgame-perfect Nash equilibria, checked by backward induction:
+Pure SPNE after the separate continuation check:
 
 |  | Entrant | Incumbent after In |
 | --- | --- | --- |
@@ -96,13 +105,11 @@ The following change has already been executed. Raising the incumbent's Fight pa
 
 ![Computed game tree from this executed example.](assets/02_Gambit_PyGambit_Interactive_11_00.png)
 
-Pure Nash equilibria of the whole game:
-
 |  | Entrant | Incumbent after In |
 | --- | --- | --- |
 | 0 | Out | Fight |
 
-Pure subgame-perfect Nash equilibria, checked by backward induction:
+Pure SPNE after the separate continuation check:
 
 |  | Entrant | Incumbent after In |
 | --- | --- | --- |
@@ -155,15 +162,21 @@ $$
 
 Expected baseline payoffs are $(2,1/2)$. A tree is a representation: these linked information sets preserve **simultaneous choice with private costs**, not an observed sequence of actions.
 
-## 5. Harsanyi: private costs and type-contingent plans
-Each firm chooses Enter or Out simultaneously. Revenue is 4 if it enters alone and 2 if both enter; an entrant pays its cost. Firm 1's cost is publicly known to be 1. Firm 2's cost is 1 (low) or 3 (high), each with probability 1/2.
+## 5. Harsanyi: make private information explicit
 
-Nature picks Firm 2's type. Firm 1 does **not** see it. Firm 2 sees its own type but does **not** see Firm 1's action. The dashed information sets preserve those assumptions. Removing an information-set link changes the game.
+Firm 1 has cost $c_1$. Firm 2 privately knows whether $c_2=1$ (low) or $c_2=c_H$ (high). The common prior is $p=\Pr(c_2=1)$. Both choose Enter or Out **simultaneously**.
 
-A strategy for Firm 2 is a **complete plan for both types**. At the baseline, the pure Bayesian equilibrium is `(Firm 1 Enter; Firm 2 low Enter, high Out)`. Firm 1 then earns an expected payoff of 2, and Firm 2 an ex-ante expected payoff of 1/2.
+| Cue | Type-space pseudocode | Mathematical check |
+|---|---|---|
+| 🎲 Nature | `draw type t₂ ∈ {low, high} with prior p` | $0<p<1$ keeps both types relevant |
+| 🔒 Information | `Firm 1 cannot observe t₂; Firm 2 observes only its own type` | Link indistinguishable nodes in the same information set |
+| 🧩 Strategy | `s₂ ← (action if low, action if high)` | A Bayesian strategy is a complete type-contingent plan |
+| ✓ Incentives | `test Firm 1 in expectation; test each Firm 2 type conditionally` | $\mathbb E[u_1(s)]\geq\mathbb E[u_1(a_1',s_{-1})]$ and $u_2(s\mid t_2)\geq u_2(a_2',s_{-2}\mid t_2)$ |
+| → Report | `show plan and expected payoffs` | Distinguish changed beliefs/payoffs from changed equilibrium actions |
 
+Nature and information sets make uncertainty visible; they do **not** turn this static game into an observed sequence. Move the prior and cost controls below to see which incentive inequalities change.
 
-Prior P(low cost) = 0.50; costs: Firm 1 = 1, Firm 2 = 1 or 3.
+P(low)=0.50; costs: Firm 1=1, Firm 2=1 or 3
 
 ![Computed game tree from this executed example.](assets/02_Gambit_PyGambit_Interactive_16_01.png)
 
@@ -171,15 +184,13 @@ Prior P(low cost) = 0.50; costs: Firm 1 = 1, Firm 2 = 1 or 3.
 | --- | --- | --- | --- | --- | --- |
 | 0 | Enter | Enter | Out | 2.0 | 0.5 |
 
-Every listed pure plan agrees with the independent, type-conditional deviation check.
-
-Only PURE equilibria are enumerated here; an empty list does not rule out mixed equilibria.
+✓ Solver plans agree with the independent type-by-type deviation check.
 
 ## Saved experiments · change beliefs, then costs
 
 These examples are also precomputed. With $p=0.8$ and the original costs, equilibrium actions stay the same but Firm 1's expected payoff is $3-2(0.8)=1.4$. Next raise Firm 1's cost to 3; staying Out becomes optimal, while both Firm 2 types enter.
 
-Prior P(low cost) = 0.80; costs: Firm 1 = 1, Firm 2 = 1 or 3.
+P(low)=0.80; costs: Firm 1=1, Firm 2=1 or 3
 
 ![Computed game tree from this executed example.](assets/02_Gambit_PyGambit_Interactive_18_01.png)
 
@@ -187,11 +198,9 @@ Prior P(low cost) = 0.80; costs: Firm 1 = 1, Firm 2 = 1 or 3.
 | --- | --- | --- | --- | --- | --- |
 | 0 | Enter | Enter | Out | 1.4 | 0.8 |
 
-Every listed pure plan agrees with the independent, type-conditional deviation check.
+✓ Solver plans agree with the independent type-by-type deviation check.
 
-Only PURE equilibria are enumerated here; an empty list does not rule out mixed equilibria.
-
-Prior P(low cost) = 0.80; costs: Firm 1 = 3, Firm 2 = 1 or 3.
+P(low)=0.80; costs: Firm 1=3, Firm 2=1 or 3
 
 ![Computed game tree from this executed example.](assets/02_Gambit_PyGambit_Interactive_18_04.png)
 
@@ -199,9 +208,7 @@ Prior P(low cost) = 0.80; costs: Firm 1 = 3, Firm 2 = 1 or 3.
 | --- | --- | --- | --- | --- | --- |
 | 0 | Out | Enter | Enter | 0.0 | 2.6 |
 
-Every listed pure plan agrees with the independent, type-conditional deviation check.
-
-Only PURE equilibria are enumerated here; an empty list does not rule out mixed equilibria.
+✓ Solver plans agree with the independent type-by-type deviation check.
 
 ## 6. Change uncertainty and costs
 First change only the prior. A payoff or belief can change without changing the equilibrium actions. Next raise Firm 1's cost or change the high type's cost. Check incentives separately for the low and high types.

@@ -25,6 +25,8 @@ def html_tables(html):
     return '\n\n'.join(chunks)
 
 for path in sorted(ROOT.glob('notebooks/*/*.ipynb'),key=lambda p:p.name):
+    if path.name not in TARGETS:
+        continue
     nb=nbformat.read(path,as_version=4)
     if any(c.cell_type=='code' and not c.execution_count for c in nb.cells):
         raise ValueError('Execute every code cell before generating a teaching page.')

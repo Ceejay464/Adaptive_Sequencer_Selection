@@ -31,7 +31,12 @@ class ThreeLensReleaseTests(unittest.TestCase):
         html = (ROOT / 'web/index.html').read_text()
         parser = CollectingParser()
         parser.feed(html)
-        for marker in ['strategic', 'contribution', 'personas', 'game-form', 'abstract-input', 'matching-canvas']:
+        for marker in [
+            'strategic', 'contribution', 'personas', 'game-form', 'abstract-input',
+            'solution-nash', 'solution-selten', 'solution-harsanyi', 'trace-nash',
+            'solve-selten', 'solve-harsanyi', 'sample-harsanyi',
+            'matching-canvas', 'play-rounds', 'motion-toggle',
+        ]:
             self.assertIn(marker, parser.ids)
         self.assertEqual(parser.scripts, ['./app.js'])
         self.assertEqual(parser.stylesheets, ['./styles.css'])
@@ -46,6 +51,31 @@ class ThreeLensReleaseTests(unittest.TestCase):
         self.assertIn('build', package['scripts'])
         self.assertNotIn('dependencies', package)
         self.assertNotIn('env', config)
+
+    def test_motion_system_has_controls_and_reduced_motion_fallback(self):
+        css = (ROOT / 'web/styles.css').read_text()
+        js = (ROOT / 'web/app.js').read_text()
+        for marker in ['@keyframes draw-line', '@keyframes node-pop', '@keyframes trophy-glow',
+                       '@media (prefers-reduced-motion: reduce)', '.motion-paused']:
+            self.assertIn(marker, css)
+        self.assertIn("$('#play-rounds').addEventListener", js)
+        self.assertIn("$('#solve-selten').addEventListener", js)
+        self.assertIn("$('#solve-harsanyi').addEventListener", js)
+        self.assertIn("$('#sample-harsanyi').addEventListener", js)
+        self.assertIn("motionButton.addEventListener", js)
+        self.assertIn('IntersectionObserver', js)
+
+    def test_matching_primary_button_remains_readable_in_dark_mode(self):
+        css = (ROOT / 'web/styles.css').read_text()
+        enabled = re.search(r'\.mechanism-controls \.primary-button\s*\{([^}]+)\}', css)
+        disabled = re.search(r'\.mechanism-controls \.primary-button:disabled\s*\{([^}]+)\}', css)
+        self.assertIsNotNone(enabled)
+        self.assertIsNotNone(disabled)
+        self.assertIn('linear-gradient', enabled.group(1))
+        self.assertIn('color: #04111d', enabled.group(1))
+        self.assertIn('color: var(--ink) !important', disabled.group(1))
+        self.assertIn('-webkit-text-fill-color: var(--ink)', disabled.group(1))
+        self.assertIn('opacity: 1', disabled.group(1))
 
     def test_readme_avoids_markdown_sensitive_superscripts(self):
         for relative in ['README.md', 'docs/01_Matrix_Games_Demo.md']:
@@ -65,6 +95,7 @@ class ThreeLensReleaseTests(unittest.TestCase):
             'run_boston', 'run_deferred_acceptance', 'blocking_pairs',
             '10.1257/000282803322157061', '10.1257/000282805774669637',
             'animate_history', 'at least two strategies per player',
+            'run_experiment', 'round_story', 'Boston locks a seat now',
         ]:
             self.assertIn(marker, source)
 

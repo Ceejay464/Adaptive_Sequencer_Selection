@@ -13,18 +13,21 @@
 
 **Instructor: Prof. Luyao Zhang**
 
-One game, two software libraries, one independent incentive check.
+This notebook uses one small game to teach one habit: **predict → compute → verify → change one payoff → explain**.
 
-**Question:** if each player knows the payoffs and chooses without observing the other's choice, which strategy pairs are stable against a unilateral deviation?
+| Start here | Student action | Evidence to keep |
+|---|---|---|
+| ① Represent | Read each cell as **(row payoff, column payoff)** | Two players, two distinct strategies each, and all eight payoffs |
+| ② Predict | Mark best responses before running code | A proposed pure or mixed equilibrium |
+| ③ Verify | Run two solvers plus an independent deviation check | Agreement, payoff, and maximum unilateral gain |
+| ④ Experiment | Edit any payoff in the control panel | Before/after result and one changed inequality |
+| ⑤ Explain | State what the computation does—and does not—show | A two-sentence interpretation and boundary |
 
-**To change the game:** upload this notebook to Google Colab, select a CPU runtime, then Run all. Run the installation cell before importing packages; restart the runtime if a package update asks you to. The first QuantEcon calculation can take longer while its routines compile. No API key, GPU or repository clone is needed.
+**Run in Colab:** use a CPU runtime, run the setup cell, then **Runtime → Run all**. No API key, GPU, or repository clone is needed. The saved outputs remain readable on GitHub; rerun the control cell to edit the game.
 
-A payoff matrix describes a **static complete-information** game. Mixed strategies are probability distributions over actions. Do not confuse complete information (known payoff structure) with perfect information (observed prior moves).
+A payoff matrix describes a **static, complete-information** game. Mixed strategies are probability distributions over actions. Complete information means the payoff structure is known; it does not mean that a player observes the other's current action.
 
-
-**Teach without running:** this file contains saved tables and worked parameter changes. Scroll through the Markdown and outputs. Open it in Colab and run the cells only when you want to use the interactive controls.
-
-[Open in Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb) · [Read-only teaching page](https://github.com/sunshineluyao/gt-tools-demos/blob/main/docs/01_Matrix_Games_Demo.md).
+[Open in Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb) · [Read-only teaching page](https://github.com/sunshineluyao/gt-tools-demos/blob/main/docs/01_Matrix_Games_Demo.md)
 
 ## Game card · normal form
 
@@ -35,7 +38,7 @@ The row player chooses a row; the column player chooses a column. Each cell show
 | Cooperate | (3, 3) | (0, 5) |
 | Defect | (5, 0) | (1, 1) |
 
-Using row-major array notation, the payoff arrays are `A = [[3, 0], [5, 1]]` and `B = [[3, 5], [0, 1]]`. This is also the exact Python input and remains readable in Markdown clients without matrix typesetting.
+Using row-major array notation, the payoff arrays are `A = [[3, 0], [5, 1]]` and `B = [[3, 5], [0, 1]]`. This is also the exact Python input.
 
 A mixed strategy is a probability vector. Write the row strategy as $x=(x_0,x_1)$ and the column strategy as $y=(y_0,y_1)$. Their expected payoffs are
 
@@ -55,11 +58,19 @@ $$
 
 **Baseline result:** both defect; the strategy vectors are $(0,1)$ and $(0,1)$; payoffs are $(1,1)$. The solver outputs below verify this statement.
 
-## 1. Represent the game before solving it
-Use **A[i,j]** for the row player's payoff and **B[i,j]** for the column player's payoff. In both displayed matrices, i is the row action and j is the column action. A strategy vector is ordered `[probability of action 0, probability of action 1]`.
+## 1. Represent, solve, and independently check
 
-Read the short function below line by line. The two libraries have different internal axis conventions; the comments mark the required transpose.
+Use `A[i,j]` for the row player's payoff and `B[i,j]` for the column player's payoff. A strategy vector is ordered `[probability of action 0, probability of action 1]`.
 
+| Technical cue | Pseudocode | Mathematical check | Why it matters |
+|---|---|---|---|
+| 🧩 **Input** | `read A, B` | $A,B\in\mathbb{R}^{2\times2}$ | A complete payoff for every strategy profile |
+| ⚙️ **Solve** | `candidates ← Nashpy(A,B) ∪ QuantEcon(A,Bᵀ)` | $x,y\geq0$ and $\mathbf{1}^{\mathsf T}x=\mathbf{1}^{\mathsf T}y=1$ | `B.T` aligns QuantEcon's own-action axis |
+| ✓ **Verify** | `gain ← largest unilateral deviation gain` | $\max\{\max_i(Ay)_i-x^{\mathsf T}Ay,\max_j(x^{\mathsf T}B)_j-x^{\mathsf T}By\}\leq\varepsilon$ | A solver label is not accepted without an incentive check |
+| → **Report** | `show probabilities, payoffs, gain` | $u_1=x^{\mathsf T}Ay,\ u_2=x^{\mathsf T}By$ | Makes the result interpretable and reproducible |
+| ⚠️ **Bound** | `flag ties or degeneracy` | finite output $\nRightarrow$ complete equilibrium continuum | Prevents an overclaim from a classroom computation |
+
+The short function below implements exactly this table. The transpose is the only library-specific convention students must remember.
 
 ## 2. Predict, then run: the prisoner's dilemma
 Before running, compare 5 with 3, then 1 with 0. Which row action is a best response in both columns? Repeat for the column player.
@@ -77,9 +88,7 @@ Before running, compare 5 with 3, then 1 with 0. Which row action is a best resp
 
 Pure Nash outcomes (row, column): [(1, 1)]
 
-A deviation gain near zero verifies the stated candidate, not its behavioral realism.
-
-Support enumeration need not describe an entire continuum in a degenerate game.
+A near-zero deviation gain verifies the candidate; it does not establish behavioral realism.
 
 ## 3. A mixed equilibrium: matching pennies
 Write the indifference equation for each player. Then compare your answer with both libraries.
@@ -111,9 +120,7 @@ The other player's indifference condition gives the same probability. Both playe
 
 Pure Nash outcomes (row, column): []
 
-A deviation gain near zero verifies the stated candidate, not its behavioral realism.
-
-Support enumeration need not describe an entire continuum in a degenerate game.
+A near-zero deviation gain verifies the candidate; it does not establish behavioral realism.
 
 ## Saved experiment · change one payoff
 
@@ -137,9 +144,7 @@ Before: coordination game
 
 Pure Nash outcomes (row, column): [(0, 0), (1, 1)]
 
-A deviation gain near zero verifies the stated candidate, not its behavioral realism.
-
-Support enumeration need not describe an entire continuum in a degenerate game.
+A near-zero deviation gain verifies the candidate; it does not establish behavioral realism.
 
 After: row payoff A[1,0] raised from 0 to 3
 
@@ -155,17 +160,16 @@ After: row payoff A[1,0] raised from 0 to 3
 
 Pure Nash outcomes (row, column): [(1, 1)]
 
-A deviation gain near zero verifies the stated candidate, not its behavioral realism.
+A near-zero deviation gain verifies the candidate; it does not establish behavioral realism.
 
-Support enumeration need not describe an entire continuum in a degenerate game.
+## 4. Interactive payoff laboratory
 
-## 4. Change the game
-Select a preset, edit any of the eight payoffs, and click **Solve and check**. A changed best response can create, remove or multiply equilibria.
+1. Choose a preset and **predict** the equilibrium.
+2. Edit any of the eight payoffs. Each box is labeled `A[i,j]` or `B[i,j]`.
+3. Select **Solve and check**; compare the equilibrium, payoffs, and deviation gain with your prediction.
+4. Change only one number again. Identify the best-response inequality that changed.
 
-If controls do not render, you can always call `explore_matrix(edited_A, edited_B)` in an ordinary code cell. Saving a notebook preserves output; widgets require rerunning their cell after reopening.
-
-
-The widgets are for a live Colab/Jupyter session. The saved experiment immediately above provides a complete demonstration when you are only viewing this notebook.
+If controls do not render, rerun this cell or call `explore_matrix(edited_A, edited_B)` in a normal code cell. Widgets are live only in Colab/Jupyter; the saved experiment above remains visible in GitHub.
 
 ## 5. Explain what changed
 1. Start from Coordination. How many pure outcomes and mixed candidates are returned?

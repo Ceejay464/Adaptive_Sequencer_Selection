@@ -43,7 +43,7 @@ async function openPage(viewport, label) {
   const geometry = await page.evaluate(() => ({
     clientWidth: document.documentElement.clientWidth,
     scrollWidth: document.documentElement.scrollWidth,
-    clipped: [...document.querySelectorAll('.panel, .lens-strip article, .dimension-grid article, .persona-stage article, .handoff-grid article')]
+    clipped: [...document.querySelectorAll('.panel, .lens-strip article, .dimension-grid article, .persona-stage article, .handoff-grid article, .round-flow section')]
       .filter((element) => element.scrollWidth > element.clientWidth + 2)
       .map((element) => `${element.tagName}.${element.className}`),
   }));
@@ -63,6 +63,25 @@ try {
   await desktop.locator('.switch-row').nth(2).click();
   await desktop.locator('#game-form button[type="submit"]').click();
   if (!await desktop.locator('#diagnosis').getByText('Harsanyi lens').isVisible()) errors.push('desktop: private-information game was not classified as Harsanyi');
+  if (!await desktop.locator('#solution-harsanyi').isVisible()) errors.push('desktop: Harsanyi diagnosis did not open the type-space lab');
+  await desktop.locator('#harsanyi-prior').fill('80');
+  if (!await desktop.locator('#harsanyi-result').getByText(/Entrant: Stay out/).isVisible()) errors.push('desktop: Harsanyi prior did not change the entrant decision');
+  await desktop.locator('#sample-harsanyi').click();
+  if (!await desktop.locator('#harsanyi-sample').getByText(/Nature drew (Tough|Weak)/).isVisible()) errors.push('desktop: Harsanyi type draw did not run');
+
+  await desktop.locator('.switch-row').nth(2).click();
+  await desktop.locator('.switch-row').nth(0).click();
+  await desktop.locator('.switch-row').nth(1).click();
+  await desktop.locator('#game-form button[type="submit"]').click();
+  if (!await desktop.locator('#diagnosis').getByText('Selten lens').isVisible()) errors.push('desktop: observed sequential game was not classified as Selten');
+  if (!await desktop.locator('#solution-selten').isVisible()) errors.push('desktop: Selten diagnosis did not open the game-tree lab');
+  await desktop.locator('[data-selten="fight-incumbent"]').fill('3');
+  await desktop.locator('#solve-selten').click();
+  if (!await desktop.locator('#selten-result').getByText(/Entrant Stay out; Incumbent Fight/).isVisible()) errors.push('desktop: backward induction did not respond to edited continuation payoffs');
+
+  await desktop.locator('#solution-tab-nash').click();
+  await desktop.locator('#trace-nash').click();
+  if (!await desktop.locator('[data-payoff-cell="11"]').evaluate((element) => element.classList.contains('equilibrium-cell'))) errors.push('desktop: Nash best-response animation did not identify the equilibrium cell');
 
   await desktop.locator('#abstract-input').fill('Allocation matters. We build a tool.');
   await desktop.locator('#check-abstract').click();
@@ -72,8 +91,40 @@ try {
   if (!await desktop.locator('#abstract-result').getByText('Gap pivot detected').isVisible()) errors.push('desktop: valid gap pivot failed');
 
   console.log('Browser QA: checking Boston rounds');
+  const enabledRoundButton = await desktop.locator('#next-round').evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { disabled: element.disabled, color: style.color, backgroundImage: style.backgroundImage, opacity: style.opacity };
+  });
+  if (enabledRoundButton.backgroundImage === 'none') errors.push('desktop: enabled Next round button lost its high-contrast gradient');
+  if (enabledRoundButton.color !== 'rgb(4, 17, 29)') errors.push(`desktop: enabled Next round text color changed to ${enabledRoundButton.color}`);
+  if (!await desktop.locator('#round-applications').getByText('Amina → Beacon').isVisible()) errors.push('desktop: round-one proposals are not explicit');
+  if (!await desktop.locator('#round-applications').getByText(/FINAL accept Amina/).isVisible()) errors.push('desktop: round-one final acceptance is not explicit');
+  if (!await desktop.locator('#round-applications').getByText(/Permanently assigned and out: Amina, Chen/).isVisible()) errors.push('desktop: round-one exit status is not explicit');
+  await desktop.locator('#play-rounds').click();
+  if (await desktop.locator('#play-rounds').getAttribute('aria-pressed') !== 'true') errors.push('desktop: autoplay did not start');
+  await desktop.locator('#play-rounds').click();
+  await desktop.locator('#motion-toggle').click();
+  if (!await desktop.locator('body').evaluate((element) => element.classList.contains('motion-paused'))) errors.push('desktop: motion pause did not activate');
+  await desktop.locator('#motion-toggle').click();
   for (let step = 0; step < 10 && await desktop.locator('#next-round').isEnabled(); step += 1) await desktop.locator('#next-round').click();
   if (!await desktop.locator('#stability-result').getByText('Not stable in this example.').isVisible()) errors.push('desktop: Boston blocking-pair result missing');
+  const disabledRoundButton = await desktop.locator('#next-round').evaluate((element) => {
+    const style = getComputedStyle(element);
+    return {
+      disabled: element.disabled,
+      color: style.color,
+      textFillColor: style.webkitTextFillColor,
+      backgroundImage: style.backgroundImage,
+      boxShadow: style.boxShadow,
+      opacity: style.opacity,
+    };
+  });
+  if (!disabledRoundButton.disabled) errors.push('desktop: Final allocation button is not disabled');
+  if (disabledRoundButton.textFillColor !== 'rgb(237, 247, 255)' || !disabledRoundButton.boxShadow.includes('rgb(23, 44, 68)')) {
+    errors.push(`desktop: disabled Final allocation text is not readable (${JSON.stringify(disabledRoundButton)})`);
+  }
+  if (disabledRoundButton.opacity !== '1') errors.push(`desktop: disabled Final allocation opacity is ${disabledRoundButton.opacity}`);
+  checks.push({ label: 'matching-button-contrast', enabledRoundButton, disabledRoundButton });
   await desktop.locator('#mechanism-select').selectOption('deferred');
   console.log('Browser QA: checking deferred-acceptance rounds');
   for (let step = 0; step < 10 && await desktop.locator('#next-round').isEnabled(); step += 1) await desktop.locator('#next-round').click();
@@ -88,6 +139,21 @@ try {
 
   console.log('Browser QA: opening mobile view');
   const mobile = await openPage({ width: 390, height: 844 }, 'mobile');
+  for (const lens of ['selten', 'harsanyi']) {
+    await mobile.locator(`#solution-tab-${lens}`).click();
+    const panelGeometry = await mobile.locator(`#solution-${lens}`).evaluate((element) => ({
+      clientWidth: element.clientWidth,
+      scrollWidth: element.scrollWidth,
+      clipped: [...element.querySelectorAll('fieldset, .game-visual, .solution-result')]
+        .filter((child) => child.scrollWidth > child.clientWidth + 2)
+        .map((child) => `${child.tagName}.${child.className}`),
+    }));
+    if (panelGeometry.scrollWidth > panelGeometry.clientWidth + 2 || panelGeometry.clipped.length) {
+      errors.push(`mobile: ${lens} lab overflow ${JSON.stringify(panelGeometry)}`);
+    }
+    checks.push({ label: `mobile-${lens}-lab`, viewport: { width: 390, height: 844 }, geometry: panelGeometry });
+  }
+  await mobile.locator('#solution-tab-nash').click();
   console.log('Browser QA: capturing mobile');
   await mobile.evaluate(() => { document.activeElement?.blur(); window.scrollTo(0, 0); });
   await mobile.screenshot({ path: path.join(root, 'outputs', 'three_lens_mobile.png'), fullPage: true });

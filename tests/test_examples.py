@@ -199,6 +199,33 @@ class SchoolChoiceTests(unittest.TestCase):
         true_rank = {school: rank for rank, school in enumerate(ns['PREFERENCES']['Bo'])}
         self.assertLess(true_rank[strategic['by_student']['Bo']], true_rank[truthful['by_student']['Bo']])
 
+    def test_round_story_names_proposals_decisions_and_continuation(self):
+        ns = self.ns
+        boston = ns['run_boston'](*self.args)
+        deferred = ns['run_deferred_acceptance'](*self.args)
+        round_one = ns['round_story'](boston, 1, 'Boston')
+        self.assertIn('Amina → Beacon', round_one['Proposals'])
+        self.assertIn('FINAL accept Amina', round_one['School decisions'])
+        self.assertIn('Permanently assigned and out: Amina, Chen', round_one['Who continues'])
+        boston_round_two = ns['round_story'](boston, 2, 'Boston')
+        self.assertIn('Aurora: FINAL accept no one; reject/release Bo', boston_round_two['School decisions'])
+        round_two = ns['round_story'](deferred, 2, 'DA')
+        self.assertIn('tentatively hold Bo', round_two['School decisions'])
+        self.assertIn('Rejected/displaced and proposing next: Chen', round_two['Who continues'])
+
+    def test_school_choice_widget_changes_one_report(self):
+        ns = self.ns
+        with contextlib.redirect_stdout(io.StringIO()):
+            for cell in self.notebook['cells']:
+                if 'widgets' in cell['metadata'].get('tags', []):
+                    exec(cell['source'], ns)
+        ns['experiment_student'].value = 'Bo'
+        ns['experiment_first_choice'].value = 'Aurora'
+        ns['experiment_mechanism'].value = 'Boston'
+        with contextlib.redirect_stdout(io.StringIO()):
+            changed = ns['run_experiment']()
+        self.assertEqual(changed['by_student']['Bo'], 'Aurora')
+
 
 if __name__=='__main__':
     unittest.main()

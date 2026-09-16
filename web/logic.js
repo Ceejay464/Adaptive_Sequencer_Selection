@@ -65,18 +65,126 @@ function validateMatrix(matrix, label) {
   });
 }
 
-export function findPureNash(rowPayoffs, columnPayoffs) {
+export function analyzePureNash(rowPayoffs, columnPayoffs) {
   validateMatrix(rowPayoffs, 'Row payoffs');
   validateMatrix(columnPayoffs, 'Column payoffs');
-  const equilibria = [];
-  for (let row = 0; row < 2; row += 1) {
-    for (let column = 0; column < 2; column += 1) {
-      const rowBest = Number(rowPayoffs[row][column]) >= Number(rowPayoffs[1 - row][column]);
-      const columnBest = Number(columnPayoffs[row][column]) >= Number(columnPayoffs[row][1 - column]);
-      if (rowBest && columnBest) equilibria.push([row, column]);
+  const rowBestCells = [];
+  const columnBestCells = [];
+  for (let column = 0; column < 2; column += 1) {
+    const best = Math.max(Number(rowPayoffs[0][column]), Number(rowPayoffs[1][column]));
+    for (let row = 0; row < 2; row += 1) {
+      if (Number(rowPayoffs[row][column]) === best) rowBestCells.push([row, column]);
     }
   }
-  return equilibria;
+  for (let row = 0; row < 2; row += 1) {
+    const best = Math.max(Number(columnPayoffs[row][0]), Number(columnPayoffs[row][1]));
+    for (let column = 0; column < 2; column += 1) {
+      if (Number(columnPayoffs[row][column]) === best) columnBestCells.push([row, column]);
+    }
+  }
+  const key = ([row, column]) => `${row}${column}`;
+  const columnBestKeys = new Set(columnBestCells.map(key));
+  return {
+    rowBestCells,
+    columnBestCells,
+    equilibria: rowBestCells.filter((cell) => columnBestKeys.has(key(cell))),
+  };
+}
+
+export function findPureNash(rowPayoffs, columnPayoffs) {
+  return analyzePureNash(rowPayoffs, columnPayoffs).equilibria;
+}
+
+function payoffPair(value, label) {
+  if (!Array.isArray(value) || value.length !== 2 || value.some((payoff) => !Number.isFinite(Number(payoff)))) {
+    throw new TypeError(`${label} must contain two numeric payoffs.`);
+  }
+  return value.map(Number);
+}
+
+function maximizingLabels(entries) {
+  const maximum = Math.max(...entries.map(([, payoff]) => Number(payoff)));
+  return entries.filter(([, payoff]) => Number(payoff) === maximum).map(([label]) => label);
+}
+
+export function solveSequentialEntry({ out = [1, 2], fight = [-1, -1], accommodate = [2, 1] } = {}) {
+  const terminals = {
+    'Stay out': payoffPair(out, 'Stay-out outcome'),
+    Fight: payoffPair(fight, 'Fight outcome'),
+    Accommodate: payoffPair(accommodate, 'Accommodation outcome'),
+  };
+  const incumbentBestActions = maximizingLabels([
+    ['Fight', terminals.Fight[1]],
+    ['Accommodate', terminals.Accommodate[1]],
+  ]);
+  const profiles = incumbentBestActions.flatMap((incumbent) => {
+    const continuation = terminals[incumbent];
+    const entrantBestActions = maximizingLabels([
+      ['Stay out', terminals['Stay out'][0]],
+      ['Enter', continuation[0]],
+    ]);
+    return entrantBestActions.map((entrant) => ({
+      entrant,
+      incumbent,
+      outcome: entrant === 'Stay out' ? 'Stay out' : incumbent,
+      payoffs: entrant === 'Stay out' ? terminals['Stay out'] : continuation,
+    }));
+  });
+  return { terminals, incumbentBestActions, profiles };
+}
+
+function finiteNumber(value, label) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) throw new TypeError(`${label} must be numeric.`);
+  return number;
+}
+
+export function solveBayesianEntry({
+  probabilityTough = 0.4,
+  entrantOut = 0,
+  entrantIfFight = -1,
+  entrantIfAccommodate = 2,
+  toughFight = 2,
+  toughAccommodate = 0,
+  weakFight = -2,
+  weakAccommodate = 1,
+} = {}) {
+  const probability = finiteNumber(probabilityTough, 'Tough-type probability');
+  if (probability < 0 || probability > 1) throw new RangeError('Tough-type probability must be between 0 and 1.');
+  const outside = finiteNumber(entrantOut, 'Stay-out payoff');
+  const entrantPayoffs = {
+    Fight: finiteNumber(entrantIfFight, 'Entrant payoff after Fight'),
+    Accommodate: finiteNumber(entrantIfAccommodate, 'Entrant payoff after Accommodate'),
+  };
+  const typeBestActions = {
+    Tough: maximizingLabels([
+      ['Fight', finiteNumber(toughFight, 'Tough payoff from Fight')],
+      ['Accommodate', finiteNumber(toughAccommodate, 'Tough payoff from Accommodate')],
+    ]),
+    Weak: maximizingLabels([
+      ['Fight', finiteNumber(weakFight, 'Weak payoff from Fight')],
+      ['Accommodate', finiteNumber(weakAccommodate, 'Weak payoff from Accommodate')],
+    ]),
+  };
+  const expectedEntryPayoffs = typeBestActions.Tough.flatMap((toughAction) =>
+    typeBestActions.Weak.map((weakAction) => (
+      probability * entrantPayoffs[toughAction]
+      + (1 - probability) * entrantPayoffs[weakAction]
+    )));
+  const minimum = Math.min(...expectedEntryPayoffs);
+  const maximum = Math.max(...expectedEntryPayoffs);
+  let entrantRecommendation = 'Depends on how an indifferent type acts';
+  if (minimum > outside) entrantRecommendation = 'Enter';
+  else if (maximum < outside) entrantRecommendation = 'Stay out';
+  else if (minimum === maximum && minimum === outside) entrantRecommendation = 'Either Enter or Stay out';
+  return {
+    probabilityTough: probability,
+    probabilityWeak: 1 - probability,
+    typeBestActions,
+    expectedEntryRange: [minimum, maximum],
+    entrantOut: outside,
+    entrantRecommendation,
+  };
 }
 
 function sentenceList(text = '') {
@@ -198,6 +306,61 @@ export function findBlockingPairs({ students, schools, capacities, preferences, 
     });
   });
   return pairs;
+}
+
+export function describeMatchingRound({ students, schools }, result, index, mechanism) {
+  const step = result.history[index];
+  if (!step) throw new RangeError('Matching round does not exist.');
+  const status = Object.fromEntries(students.map((student) => [student, 'active']));
+  if (index === 0) {
+    return {
+      proposals: ['No proposals yet.'],
+      decisions: ['No school has made a decision.'],
+      continuation: 'All students begin active.',
+      status,
+    };
+  }
+
+  const previous = result.history[index - 1];
+  const applications = step.applications || {};
+  const proposals = schools.flatMap((school) =>
+    (applications[school] || []).map((student) => `${student} → ${school}`));
+  const finalizing = mechanism === 'deferred' && index === result.history.length - 1 && !proposals.length;
+  if (finalizing) {
+    students.forEach((student) => { status[student] = 'final'; });
+    return {
+      proposals: ['No proposal remains.'],
+      decisions: ['Every tentative hold becomes a final assignment.'],
+      continuation: students.map((student) => `${student} → ${step.byStudent[student] || 'unmatched'}`).join('; '),
+      status,
+    };
+  }
+
+  const decisions = [];
+  schools.forEach((school) => {
+    const incoming = applications[school] || [];
+    const pool = [...new Set([...(previous.bySchool[school] || []), ...incoming])];
+    const selected = step.bySchool[school] || [];
+    const accepted = mechanism === 'boston'
+      ? selected.filter((student) => !(previous.bySchool[school] || []).includes(student))
+      : selected;
+    const rejected = pool.filter((student) => !selected.includes(student));
+    if (incoming.length || (mechanism === 'deferred' && rejected.length)) {
+      const action = mechanism === 'boston' ? 'FINAL accept' : 'tentatively hold';
+      decisions.push(`${school}: ${action} ${accepted.join(', ') || 'no one'}; reject/release ${rejected.join(', ') || 'no one'}.`);
+    }
+    accepted.forEach((student) => { status[student] = mechanism === 'boston' ? 'final' : 'held'; });
+    rejected.forEach((student) => { status[student] = 'rejected'; });
+  });
+  students.forEach((student) => {
+    if (step.byStudent[student] && status[student] === 'active') status[student] = mechanism === 'boston' ? 'final' : 'held';
+  });
+  const assigned = students.filter((student) => step.byStudent[student]);
+  const active = students.filter((student) => !step.byStudent[student]);
+  const continuation = mechanism === 'boston'
+    ? `Permanently assigned and out: ${assigned.join(', ') || 'none'}. Next round: ${active.join(', ') || 'none'}.`
+    : `Held, not final: ${assigned.join(', ') || 'none'}. Rejected or displaced and proposing next: ${active.join(', ') || 'none'}.`;
+  return { proposals: proposals.length ? proposals : ['No new proposal.'], decisions, continuation, status };
 }
 
 export const SCHOOL_CHOICE_SCENARIO = {

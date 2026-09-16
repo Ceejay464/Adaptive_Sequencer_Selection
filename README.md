@@ -1,91 +1,153 @@
+<a id="top"></a>
 <div align="center">
 
 # Game Theory Tools
 
-### From Nash to Selten to Harsanyi
+### From Nash, Selten, and Harsanyi to Social Choice and Mechanism Design
 
-**COMSCI/ECON 206 · Computational Microeconomics**
-
+**COMSCI/ECON 206 · Computational Microeconomics**<br>
 Duke Kunshan University · Autumn 2026 · **Prof. Luyao Zhang**
 
+**Construct the game → choose the solution concept → test the contribution → redesign the institution.**
+
+[![Notebook checks](https://github.com/sunshineluyao/gt-tools-demos/actions/workflows/notebooks.yml/badge.svg?branch=main)](https://github.com/sunshineluyao/gt-tools-demos/actions/workflows/notebooks.yml)
 [![Teach: matrices](docs/assets/teach-matrices.svg)](docs/01_Matrix_Games_Demo.md)
 [![Teach: trees and types](docs/assets/teach-trees.svg)](docs/02_Trees_and_Information_Demo.md)
 [![Open notebook 01 in Colab](docs/assets/colab-01.svg)](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb)
 [![Open notebook 02 in Colab](docs/assets/colab-02.svg)](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb)
 [![Download repository ZIP](docs/assets/download.svg)](https://github.com/sunshineluyao/gt-tools-demos/archive/refs/heads/main.zip)
 
-[![Notebook checks](https://github.com/sunshineluyao/gt-tools-demos/actions/workflows/notebooks.yml/badge.svg?branch=main)](https://github.com/sunshineluyao/gt-tools-demos/actions/workflows/notebooks.yml)
-
-[Three-Lens Studio](web/) · [Deploy on Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsunshineluyao%2Fgt-tools-demos) · [School-choice Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb)
-
-[Start teaching](#teach-directly-from-github) · [Choose a tool](#choose-a-tool) · [Game cards](#game-cards) · [Classroom guide](docs/Wednesday_UI_Demo.md) · [References & licenses](#software-and-licenses)
+[Open school-choice Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb) · [Deploy the Three-Lens Studio](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsunshineluyao%2Fgt-tools-demos) · [Classroom guide](docs/Wednesday_UI_Demo.md)
 
 </div>
 
 ![Three teaching models: a payoff matrix selects mutual defection; an entry tree selects entry and accommodation; a private-cost tree links indistinguishable nodes with information sets I1, I2 and I3.](docs/assets/game-theory-hero.svg)
 
-**Predict. Solve. Change one assumption. Explain.** Explore how timing and private information change strategic predictions, then interpret the result through economics, computer science and behavioral science. The hero compares three distinct classroom examples; complete assumptions and payoff tables appear below.
+This repository is a guided learning environment for turning a research idea into observable evidence of **Strategic Thinking**, **Interdisciplinary Contribution**, and **Mechanism Design**. Students first formalize strategic interaction, then test a literature contribution, and finally compare how game theory, social choice, and mechanism design change the same problem.
 
-This cumulative repository contains reusable tools and notebooks. **Week 3 retains exactly two core notebooks**, both with saved results for classroom presentation. The new transfer tutorial and notebook prepare students to form teams and carry those foundations into social choice and mechanism design.
+> [!NOTE]
+> **Release scope.** Notebooks 01 and 02 are the two core Week 3 game-theory notebooks. Notebook 03 and the Three-Lens Studio are the Week 4 transfer activities that connect those foundations to literature evaluation, school choice, and the team capstone.
 
-## Three-Lens Studio: observable learning checks
+## Navigation
 
-Monday's TED Talk and peer evaluation revealed a common issue: students could name a disciplinary lens but could not yet show what evidence would confirm it. The [Three-Lens Studio](web/) turns each course identity into a practical check.
+**Start**
 
-| Learning identity | Practical diagnostic | Evidence students produce |
+- [Quick start: choose your route](#quick-start)
+- [Learning path and student evidence](#learning-path)
+
+**Learn and teach**
+
+- [Three-Lens Studio](#three-lens-studio)
+- [Notebook sequence](#notebooks)
+- [Choose the model and tool](#choose-a-tool)
+- [Core concept cards](#game-cards)
+- [Classroom use](#classroom-use)
+
+**Build, verify, and cite**
+
+- [Local use and Vercel deployment](#local-and-vercel)
+- [Validation and evidence boundaries](#validation)
+- [Repository map](#repository-map)
+- [References, software, and licenses](#software-and-licenses)
+
+<a id="quick-start"></a>
+## 1. Quick start: choose your route
+
+| I want to… | Start here | What I should produce |
 |---|---|---|
-| **Strategic thinker** | Build the simplest valid game with at least two players and at least two feasible strategies per player; use timing and information to choose a Nash, Selten, or Harsanyi starting point | Game card, 2×2 deviation check, modeling boundary, and falsification condition |
-| **Interdisciplinary contributor** | Compare close literature across research question, economic model, computational method, behavioral evidence, application, validation, and synthesis | Abstract gap pivot, verified contribution matrix, surviving or revised novelty claim, and AI-use disclosure |
-| **Mechanism designer** | Speak as a game theorist, social-choice researcher, and mechanism designer while comparing Boston and Gale–Shapley student-proposing deferred acceptance | Pseudocode, executable allocation trace, stability/manipulation check, and transfer to the final-project roadmap |
+| Complete the Wednesday self-check | [Three-Lens Studio source](web/) and [school-choice Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb) | A valid game, a literature comparison, and a three-lens explanation |
+| Learn simultaneous-move games | [Notebook 01 teaching page](docs/01_Matrix_Games_Demo.md) → [Colab 01](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb) | A payoff matrix and unilateral-deviation check |
+| Learn sequential or incomplete-information games | [Notebook 02 teaching page](docs/02_Trees_and_Information_Demo.md) → [Colab 02](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb) | A game tree, information structure, and credibility or type-incentive check |
+| Compare social goals and allocation rules | [School-choice Colab 03](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb) | Boston and deferred-acceptance traces, plus stability and manipulation analysis |
+| Teach the laboratory | [Classroom guide](docs/Wednesday_UI_Demo.md) and [ready-to-open games](examples/) | A paced demonstration, peer challenge, and exit ticket |
+| Run or deploy the website | [Local/Vercel instructions](#local-and-vercel) | A tested static build in `dist/` |
 
-The AI Economist is treated as a worked integration exemplar—not as an unverified uniqueness claim. The literature tool asks generative AI to search for counterexamples, but requires a human to open each source, verify metadata and evidence, revise the claim, and disclose assistance.
+**Recommended student sequence:** read the relevant teaching page, predict the result before running code, run the Colab notebook, change one assumption, and explain what changed and why.
 
-### Launch or deploy
+[Back to top](#top)
 
-- Run `npm test && npm run build`, then serve `dist/` with any static server.
-- Use the [pre-filled Vercel Git import](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsunshineluyao%2Fgt-tools-demos); there are no environment variables or external services.
-- Follow the short [Vercel deployment and browser preflight](docs/DEPLOY_VERCEL.md).
-- Open [notebook 03 in Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb) for the cited Python implementation and matching animation.
+<a id="learning-path"></a>
+## 2. Learning path: what students must demonstrate
 
-## Teach directly from GitHub
-
-> [!TIP]
-> **Present now:** open either teaching page to show the actual saved tables, formulas and figures. **Experiment live:** open its Colab notebook, run all cells, and change the controls.
-
-| Topic | Read-only teaching page | Executed notebook | Interactive Colab |
+| Stage | Guiding question | Required action | Observable evidence |
 |---|---|---|---|
-| Matrix games: QuantEcon + Nashpy | [Teach notebook 01](docs/01_Matrix_Games_Demo.md) | [View saved outputs](notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb) | [Open Colab 01](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb) |
-| Trees and types: Gambit/PyGambit | [Teach notebook 02](docs/02_Trees_and_Information_Demo.md) | [View saved outputs](notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb) | [Open Colab 02](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb) |
+| **1 · Strategic Thinking** | What is the simplest valid representation of my problem? | Specify at least two players and two distinct feasible strategies per player; use a matrix or tree; state payoffs, timing, and information | Game card, equilibrium check, modeling boundary, and condition that could overturn the conclusion |
+| **2 · Interdisciplinary Contribution** | Does my claimed gap survive comparison with close literature? | Compare research question, economic model, computational method, behavioral evidence, application, validation, and synthesis | Verified literature matrix; abstract sentence two beginning with **However** or **Yet**; revised contribution claim; AI-use disclosure |
+| **3 · Three Connected Lenses** | How does each intellectual perspective change the problem? | Speak as a game theorist, social-choice researcher, and mechanism designer | Strategic prediction; explicit collective objective and trade-off; redesigned rule with truthfulness, stability, efficiency, or fairness test |
+| **4 · Capstone Transfer** | What must the team keep, revise, or investigate next? | Transfer the diagnostics to the shared research question and future-research roadmap | A documented **Keep / Revise / Investigate** decision and the next verification step |
 
-Saved comparisons include coordination before/after a payoff change, an entry game before/after a credible threat, and a Bayesian game before/after changes to the prior and entry cost. All demonstration figures and outputs are embedded in the notebooks. The Markdown teaching pages provide a second GitHub viewing format.
+The lenses are cumulative rather than interchangeable. **Game theory** predicts behavior under given rules. **Social choice** states and compares collective goals. **Mechanism design** changes the rules and asks whether the desired outcomes can be implemented under strategic behavior.
 
-## Week 3 core notebooks
+[Back to top](#top)
 
-| Notebook | Tool and game | What students change | Baseline check |
-|---|---|---|---|
-| [01 · QuantEcon + Nashpy](notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb) | Static, complete-information 2×2 games | All eight payoffs; prisoner's dilemma, matching pennies and coordination presets | Both tools agree; unilateral deviation gains are checked |
-| [02 · Gambit / PyGambit](notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb) | Matrix → sequential entry → private-cost entry | Credibility of fighting, entry payoffs, type prior and costs | Pure Nash, backward-induction SPNE and type-conditional Bayesian checks |
+<a id="three-lens-studio"></a>
+## 3. Three-Lens Studio
 
-**Exactly two core game-theory notebooks remain in the Week 3 release.** Notebook 03 is a later transfer activity connecting those foundations to social choice, school choice, and mechanism design. OpenSpiel, Axelrod, Mesa, PettingZoo, RLlib and oTree directories contain only an empty `.gitkeep` file so Git preserves the folders. They have no exercises, sample code or required installations yet.
+The static browser tutorial converts the learning path into three practical modules:
 
-## Run in Google Colab
+| Module | Student task | Built-in check |
+|---|---|---|
+| **A · Strategic Thinking** | Enter players, strategies, timing, and information; construct the smallest intuitive example | Rejects fewer than two players or two strategies and guides the student toward Nash, Selten, or Harsanyi |
+| **B · Interdisciplinary Contribution** | Draft the literature-gap pivot and compare the closest papers dimension by dimension | Requires **However** or **Yet**, generates a counterexample-search prompt, and labels AI suggestions **UNVERIFIED** until a human checks the sources |
+| **C · Three Perspectives** | Compare Boston and student-proposing deferred acceptance through three disciplinary personas | Animates proposal → decision → continuation, names who exits or remains active, and checks manipulation and blocking pairs |
 
-1. Choose **Colab 01**, **Colab 02**, or the school-choice **Colab 03**. To keep your edits, use **File → Save a copy in Drive**. Alternatively, download an `.ipynb` and use **File → Upload notebook** in [Google Colab](https://colab.research.google.com/).
-2. Use a **CPU** runtime. Run the setup cell before imports, then run all cells. No API key, GPU or repository clone is required.
-3. If installation asks for a restart, restart and run all cells again. PyGambit can compile from source on Linux: allow several minutes and run that setup **before class**. QuantEcon's first solver call may also take longer while routines compile.
-4. Change controls and click the notebook's solve button. If widgets do not render, use the documented ordinary Python function calls. Rerun widget cells after reopening a saved notebook.
-5. Notebook 02 writes `.efg` and `.nfg` files into `game_exports/`. Download them from Colab's Files sidebar for the Gambit desktop UI.
+### School-choice mechanism at a glance
+
+Let $U$ be students still seeking a seat, $P_s^r$ the round-$r$ proposals to school $s$, $H_s^r$ its current holds, and $q_s$ its capacity.
+
+| Phase | Boston / immediate acceptance | Gale–Shapley / student-proposing deferred acceptance |
+|---|---|---|
+| ⚙️ **Initialize** | $U\leftarrow N$; all seats open | $U\leftarrow N$ and $H_s^0\leftarrow\varnothing$ |
+| → **Propose** | Every $i\in U$ applies to rank $r$ | Every rejected $i\in U$ proposes to the next untried school |
+| 🏫 **Decide** | Permanently accept the highest-priority students in $P_s^r$ up to remaining capacity | From $H_s^{r-1}\cup P_s^r$, tentatively hold the top $q_s$ students and release the rest |
+| ↺ **Continue** | Accepted students exit; rejected students try rank $r+1$ | Rejected or displaced students continue; held students can still be displaced |
+| 🏁 **Finalize** | Each acceptance is final immediately | All holds become final only when no proposal remains |
+
+**Difference to remember:** Boston locks a seat now; deferred acceptance keeps the seat contestable until proposals stop. The [school-choice notebook](notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb) shows the exact baseline trace and lets students move one school to the top of one submitted ranking.
+
+### Human-first protocol
+
+1. Formulate the problem independently.
+2. Exchange a peer challenge.
+3. Use generative AI only to search for counterexamples or close literature.
+4. Open and verify every cited source yourself.
+5. Revise the claim and disclose how AI was used.
+
+The studio stores no form data, uses no API key, and sends no student response to a server. Form content remains in the browser and disappears on refresh.
+
+**Launch options:** [inspect the studio source](web/) · [deploy a copy on Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsunshineluyao%2Fgt-tools-demos) · [read the deployment guide](docs/DEPLOY_VERCEL.md)
+
+[Back to top](#top)
+
+<a id="teach-directly-from-github"></a>
+<a id="notebooks"></a>
+## 4. Notebook sequence
+
+| Order | Notebook | Model and tools | Change one assumption | Independent check |
+|---:|---|---|---|---|
+| **01** | [QuantEcon + Nashpy](notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb) | Static, complete-information 2×2 games | Change any of the eight payoffs or select a preset | Both tools agree; unilateral deviation gains are tested |
+| **02** | [Gambit / PyGambit](notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb) | Matrix → sequential entry → private-cost entry | Change threat credibility, entry payoffs, prior, or costs | Pure Nash, backward-induction SPNE, and type-conditional Bayesian incentives are checked |
+| **03** | [School choice](notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb) | Boston and Gale–Shapley student-proposing deferred acceptance | Move one school to the top of one student's ranking, then switch mechanisms | Proposal/decision/continuation trace, blocking pairs, and a Boston manipulation counterexample |
+
+### Run in Google Colab
+
+1. Open the appropriate Colab link below and select **File → Save a copy in Drive** if you want to keep edits.
+2. Use a **CPU** runtime. Run the setup cell before imports, then choose **Runtime → Run all**.
+3. Predict before changing a parameter. Record the baseline, one changed input, the new output, and your explanation.
+4. If a widget does not render, rerun its cell or use the ordinary Python function shown beside it. Notebook 02 may take several minutes to compile PyGambit on its first setup.
 
 <!-- COLAB_LINKS_START -->
-- [Open notebook 01 in Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb).
-- [Open notebook 02 in Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb).
-- [Open notebook 03 in Colab](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb).
+Direct Colab links (check student access after uploading the repository):
+
+- [01_QuantEcon_Nashpy_Interactive](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/quantecon_nashpy/01_QuantEcon_Nashpy_Interactive.ipynb)
+- [02_Gambit_PyGambit_Interactive](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/gambit_pygambit/02_Gambit_PyGambit_Interactive.ipynb)
+- [03_School_Choice_Three_Perspectives](https://colab.research.google.com/github/sunshineluyao/gt-tools-demos/blob/main/notebooks/school_choice/03_School_Choice_Three_Perspectives.ipynb)
 <!-- COLAB_LINKS_END -->
 
-The instructor supplied two earlier Colab links: [legacy notebook A](https://colab.research.google.com/drive/1QE87i6p3RR9vmYgBMTruHZ8cQy3M18oW?usp=sharing) and [legacy notebook B](https://colab.research.google.com/drive/1d4Na-1usHB7_t33ywAExP4sROUmBKftR?usp=sharing). Their contents were not accessible during this revision. They are retained for provenance; notebooks 01 and 02 are the current self-contained Week 3 examples, and notebook 03 is the social-choice transfer lesson.
+[Back to top](#top)
 
 <a id="choose-a-tool"></a>
-## Choose the model, then the software
+## 5. Choose the model before the software
 
 ```mermaid
 flowchart TD
@@ -107,51 +169,49 @@ flowchart TD
     class C1,C2 check;
 ```
 
-For graphical editing, use the [Gambit / GTE classroom guide](docs/Wednesday_UI_Demo.md). For learning algorithms, simulations and participant experiments, consult the [future-tool inventory](#software-and-licenses); those folders are reserved for later weeks.
-
-| Timing × information | Representation | Concept and software choice |
+| Timing × information | Representation | Concept and software |
 |---|---|---|
-| Static + complete | Payoff matrix | Nash equilibrium; Nashpy for a focused two-player entry point, QuantEcon for broader computational economics |
-| Dynamic + complete | Game tree, with observed moves in our example | SPNE; build and enumerate pure Nash profiles in PyGambit, then check continuation optimality by backward induction |
-| Static + incomplete | Types, common prior, type-contingent strategies; tree with information sets | Bayesian Nash equilibrium; PyGambit plus direct expected-payoff checks |
-| Dynamic + incomplete | History, types, beliefs and information sets | Later refinement topics; Gambit can represent the game, but a generic Nash computation does not automatically supply the appropriate refinement |
+| Static + complete | Payoff matrix | Nash equilibrium; Nashpy for transparent two-player calculations and QuantEcon for broader computational economics |
+| Dynamic + complete | Tree with observed moves | SPNE; PyGambit represents the game, while backward induction checks continuation optimality |
+| Static + incomplete | Types, common prior, and information sets | Bayesian Nash equilibrium; PyGambit plus direct expected-payoff checks |
+| Dynamic + incomplete | Histories, types, beliefs, and information sets | Later refinements; representing the tree does not by itself select the appropriate equilibrium refinement |
 
-A **tree is a representation**, not proof that moves are observed. Complete information concerns knowledge of payoff structure; perfect information concerns observation of prior moves. Our private-cost entry tree preserves simultaneous choice through information sets. Nash, Selten and Harsanyi shared the [1994 economics prize](https://www.nobelprize.org/prizes/economic-sciences/1994/summary/) for analysis of equilibria in non-cooperative games.
+> [!IMPORTANT]
+> A **tree is a representation**, not evidence that moves are observed. Complete information concerns knowledge of payoff structure; perfect information concerns observation of prior moves. The private-cost entry tree below uses information sets to preserve hidden information and simultaneous decisions.
+
+For graphical editing, use the [Gambit / Game Theory Explorer classroom guide](docs/Wednesday_UI_Demo.md).
+
+[Back to top](#top)
 
 <a id="game-cards"></a>
-## Visual game cards
+## 6. Core concept cards
 
+These compact examples support the diagnostic. Full tables, derivations, parameter changes, and saved outputs are on the [matrix teaching page](docs/01_Matrix_Games_Demo.md) and [trees-and-types teaching page](docs/02_Trees_and_Information_Demo.md).
 
-### Nash · the normal-form payoff matrix
+<details>
+<summary><strong>Nash · Can either player gain by deviating alone?</strong></summary>
 
-The row player chooses a row; the column player chooses a column. Each cell shows **(row payoff, column payoff)**. Both choose without seeing the other's current choice.
+The row player chooses a row and the column player chooses a column. Each cell reports **(row payoff, column payoff)**.
 
 | Row / Column | Cooperate | Defect |
 |---|---:|---:|
 | Cooperate | (3, 3) | (0, 5) |
 | Defect | (5, 0) | (1, 1) |
 
-Using row-major array notation, the two payoff arrays are `A = [[3, 0], [5, 1]]` and `B = [[3, 5], [0, 1]]`. This plain-text notation is intentionally identical to the Python input and remains readable even when a Markdown client does not support matrix typesetting.
-
-A mixed strategy is a probability vector. Write the row strategy as $x=(x_0,x_1)$ and the column strategy as $y=(y_0,y_1)$. Their expected payoffs are
+With `A = [[3, 0], [5, 1]]` and `B = [[3, 5], [0, 1]]`, a Nash equilibrium $(x^{\star},y^{\star})$ satisfies
 
 $$
-u_1(x,y)=x^{\mathsf T}Ay,\qquad u_2(x,y)=x^{\mathsf T}By.
+(x^{\star})^{\mathsf T}Ay^{\star}\geq x^{\mathsf T}Ay^{\star},
+\qquad
+(x^{\star})^{\mathsf T}By^{\star}\geq(x^{\star})^{\mathsf T}By.
 $$
 
-A Nash equilibrium is a pair $(x^{\star},y^{\star})$ at which neither player gains by deviating alone:
+**Baseline:** both defect, so the strategies are $(0,1)$ and $(0,1)$ and payoffs are $(1,1)$.
 
-$$
-(x^{\star})^{\mathsf T}Ay^{\star}\geq x^{\mathsf T}Ay^{\star}\quad\text{for every }x,
-$$
+</details>
 
-$$
-(x^{\star})^{\mathsf T}By^{\star}\geq(x^{\star})^{\mathsf T}By\quad\text{for every }y.
-$$
-
-**Baseline result:** both defect; the strategy vectors are $(0,1)$ and $(0,1)$; payoffs are $(1,1)$. The [saved notebook 01 results](docs/01_Matrix_Games_Demo.md) verify this statement.
-
-### Selten · the extensive-form game tree
+<details>
+<summary><strong>Selten · Is every continuation credible?</strong></summary>
 
 ```mermaid
 flowchart TD
@@ -168,9 +228,12 @@ flowchart TD
     linkStyle 1,3 stroke:#315EFB,stroke-width:3px;
 ```
 
-The thick blue route marks the baseline SPNE. Payoffs are ordered (Entrant, Incumbent). Pure Nash profiles are (Out, Fight) and (In, Accommodate). Backward induction removes the non-credible Fight threat: after entry the incumbent prefers 1 to −1, so the unique baseline SPNE is (In, Accommodate).
+Pure Nash profiles are (Out, Fight) and (In, Accommodate). Backward induction removes the non-credible Fight threat because the incumbent prefers 1 to −1 after entry. The baseline SPNE is therefore **(In, Accommodate)**.
 
-### Harsanyi · types and information sets
+</details>
+
+<details>
+<summary><strong>Harsanyi · What does each player know?</strong></summary>
 
 ```mermaid
 flowchart TD
@@ -190,132 +253,125 @@ flowchart TD
     linkStyle 6,7,8 stroke:#7254B3,stroke-width:3px,stroke-dasharray:5;
 ```
 
-**Dashed connections identify information sets, not actions.** I1 joins Firm 1's nodes because it does not observe the cost. I2 and I3 each hide Firm 1's action from Firm 2. They remain separate because Firm 2 knows its own type. The diagram shows the information structure; the following two tables give its terminal payoffs.
-
-Each type has its own normal-form payoff table. These tables show conditional payoffs; Firm 1 does not observe which table Nature selected.
-
-**Low-cost type**
-
-| Firm 1 / Firm 2 | Enter | Out |
-|---|---:|---:|
-| Enter | (1, 1) | (3, 0) |
-| Out | (0, 3) | (0, 0) |
-
-**High-cost type**
-
-| Firm 1 / Firm 2 | Enter | Out |
-|---|---:|---:|
-| Enter | (1, −1) | (3, 0) |
-| Out | (0, 1) | (0, 0) |
-
-A Bayesian strategy is a complete plan for every type. At the baseline, Firm 2's plan is **Enter if low; Out if high**, written $s_2=(\mathrm{Enter},\mathrm{Out})$. Against that plan,
-
-$$
-\mathbb{E}[u_1(\mathrm{Enter},s_2)]
-=p(2-c_1)+(1-p)(4-c_1)=3-2p.
-$$
-
-At $p=1/2$, entering yields 2 and staying out yields 0. When Firm 1 enters, low-cost Firm 2 earns $2-1=1>0$ by entering; high-cost Firm 2 earns $2-3=-1<0$ by entering and therefore stays out.
+Dashed links are information sets, not actions. Firm 1 does not observe Firm 2’s cost; Firm 2 knows its own type. With equal type probabilities, the baseline Bayesian equilibrium is
 
 $$
 \mathrm{BNE}=(\mathrm{Enter};\mathrm{Enter}\text{ if low},\mathrm{Out}\text{ if high}).
 $$
 
-Expected baseline payoffs are $(2,1/2)$. A tree is a representation: these linked information sets preserve **simultaneous choice with private costs**, not an observed sequence of actions.
+</details>
 
+[Back to top](#top)
 
-## Classroom UI: Gambit and Game Theory Explorer
+<a id="classroom-use"></a>
+## 7. Classroom use
 
-Use the [Wednesday walkthrough](docs/Wednesday_UI_Demo.md) with the ready-to-open files in [`examples/`](examples/). The same models are also constructed and exported inside notebook 02.
-
-**Gambit desktop** provides an editable game tree, a strategic-form view and equilibrium profiles. Install it separately using the [official project site](https://www.gambit-project.org/); installing the `pygambit` Python package does not install the graphical application. In the desktop app, open an `.efg` file, use **Tools → Equilibrium**, and inspect **View → Profiles**. [Official GUI guide](https://gambitproject.readthedocs.io/en/stable/gui.html).
-
-**Game Theory Explorer (GTE)** is a graphical web-based tool for creating and analyzing extensive-form game trees and strategic-form games, including Nash equilibrium computation. It is a separate open-source project, licensed **GPL-3.0**.
-
-- Landing page: [gametheoryexplorer.org](http://www.gametheoryexplorer.org/).
-- Direct builder: [gte.csc.liv.ac.uk/gte/builder](http://gte.csc.liv.ac.uk/gte/builder/).
-- Source: [gambitproject/gte](https://github.com/gambitproject/gte).
-- **Required citation:** Rahul Savani and Bernhard von Stengel (2015), *Game Theory Explorer – Software for the Applied Game Theorist*, Computational Management Science **12**, 5–33. [DOI](https://doi.org/10.1007/s10287-014-0206-x).
-
-**Access note:** GTE's source repository documents a legacy Flash GUI. Live builder operation could not be verified in this environment. Preflight the supplied URLs before class; the classroom walkthrough uses Gambit desktop and exported files if GTE does not render. No Flash installation is part of this package.
-
-<a id="software-and-licenses"></a>
-## Software inventory, licenses and future folders
-
-Upstream license texts for the listed tools are copied in [`references/licenses/`](references/licenses/); the linked upstream repositories remain authoritative. These are **software licenses**, separate from the licenses of associated papers or the instructor's original materials.
-
-| Tool | Best fit | License / authoritative source | This release |
-|---|---|---|---|
-| QuantEcon.py | Computational economics; matrix games; later dynamic models | [MIT](https://github.com/QuantEcon/QuantEcon.py/blob/main/LICENSE) | Notebook 01; 0.11.4 |
-| Nashpy | Transparent two-player matrix games | [MIT](https://github.com/drvinceknight/Nashpy/blob/main/LICENSE) | Notebook 01; 0.0.43 |
-| Gambit / PyGambit | Finite strategic/extensive games, information sets, equilibrium algorithms | [GPL-2.0-or-later](https://github.com/gambitproject/gambit/blob/master/COPYING); [package metadata](https://pypi.org/project/pygambit/16.7.0/) | Notebook 02; 16.7.0; separate desktop UI |
-| GTE | Graphical construction of small matrices and trees | [GPL-3.0](https://github.com/gambitproject/gte/blob/master/COPYING) | UI introduction and citation; live access unverified |
-| OpenSpiel | Learning, search and evaluation across games | [Apache-2.0](https://github.com/google-deepmind/open_spiel/blob/master/LICENSE) | `notebooks/openspiel/` reserved |
-| Axelrod-Python | Repeated prisoner's dilemma and tournaments | [MIT](https://github.com/Axelrod-Python/Axelrod/blob/dev/LICENSE.txt) | `notebooks/axelrod/` reserved |
-| Mesa | Agent-based simulation | [Apache-2.0](https://github.com/projectmesa/mesa/blob/main/LICENSE) | `notebooks/mesa/` reserved |
-| PettingZoo | Multi-agent environment interfaces and benchmark environments | [MIT](https://github.com/Farama-Foundation/PettingZoo/blob/master/LICENSE) | `notebooks/pettingzoo/` reserved |
-| RLlib (Ray) | Scalable reinforcement learning, including multiple agents | [Apache-2.0](https://github.com/ray-project/ray/blob/master/LICENSE) | `notebooks/rllib/` reserved |
-| oTree | Interactive behavioral experiments | [MIT](https://github.com/oTree-org/otree-core/blob/master/LICENSE) | `notebooks/otree/` reserved |
-
-For future work: use OpenSpiel for game algorithms; PettingZoo for environment interfaces; RLlib for training; Axelrod for repeated-dilemma tournaments; Mesa for agent-based simulations; oTree for designed participant experiments. These are introductions to reserved tools, not executable additions this week. Consult the relevant upstream repository's citation instructions when a future notebook uses it.
-
-<a id="references"></a>
-## Papers, actual software use and required citations
-
-These teaching examples are small original illustrations aligned with the class slides. They **do not reproduce the experiments** in the research papers below. The distinction between software papers, actual research use and tutorials is intentional.
-
-| Software | Citation and venue | What the source supports |
+| Before class | During class | After class |
 |---|---|---|
-| QuantEcon | Batista et al. (2024), *QuantEcon.py: A community based Python library for quantitative economics*, JOSS **9**(93), 5585. [DOI](https://doi.org/10.21105/joss.05585) | Peer-reviewed software paper describing the library; not presented as an independent adoption study |
-| QuantEcon application | Sargent and Stachurski, *Markov Perfect Equilibrium*, Quantitative Economics with Python. [Worked model](https://python.quantecon.org/markov_perf.html) | Official tutorial using `nnash` for a linear-quadratic dynamic game; a later application, not a journal paper or this week's exercise |
-| Nashpy | Knight and Campbell (2018), *Nashpy: A Python library for the computation of Nash equilibria*, JOSS **3**(30), 904. [DOI](https://doi.org/10.21105/joss.00904) | Software citation |
-| Nashpy research use | Li, Huang, Duan, Mguni, Shao, Wang and Deng (2024), *A survey on algorithms for Nash equilibria in finite normal-form games*, Computer Science Review **51**, 100613. [DOI](https://doi.org/10.1016/j.cosrev.2023.100613); [author text](https://arxiv.org/abs/2312.11063) | §4.3/4.3.1 explicitly uses Nashpy's Lemke–Howson implementation in empirical comparisons |
-| Gambit | Savani and Turocy (2026), *Gambit: The package for computation in game theory*, version 16.7.0. [Official citation instructions](https://www.gambit-project.org/cite/) | Software citation, with the version used in this release |
-| Gambit research use | Gemp, Marris and Piliouras (2024), *Approximating Nash Equilibria in Normal-Form Games via Stochastic Optimization*, ICLR 2024. [Official paper](https://proceedings.iclr.cc/paper_files/paper/2024/file/420678bb4c8251ab30e765bc27c3b047-Paper-Conference.pdf) | Appendix C.1 reports comparisons using seven Gambit methods on Blotto games |
-| GTE | Savani and von Stengel (2015), *Game Theory Explorer – Software for the Applied Game Theorist*, Computational Management Science **12**, 5–33. [DOI](https://doi.org/10.1007/s10287-014-0206-x); [author preprint](https://arxiv.org/abs/1403.3969) | Required software citation and worked applications of the graphical tool |
+| Open each Colab once, run all cells, and preflight Gambit/GTE links | Ask students to predict before computation, change one input, and explain the mechanism behind the change | Save a copy, record evidence, and transfer one result into the project’s Keep/Revise/Investigate log |
 
-### Conceptual references
+- [Wednesday classroom guide](docs/Wednesday_UI_Demo.md): paced interface demonstration, practice sequence, and exit ticket.
+- [`examples/`](examples/): ready-to-open `.nfg` and `.efg` games for Gambit desktop.
+- [Gambit official site](https://www.gambit-project.org/): install the desktop application separately; the `pygambit` package does not install the graphical interface.
+- [Game Theory Explorer](http://www.gametheoryexplorer.org/): optional graphical builder. Its live operation was not verified in this release, so preflight it before class and retain Gambit as the fallback.
 
-- **Nash:** John F. Nash (1950), *Equilibrium points in n-person games*, PNAS **36**(1), 48–49. [DOI](https://doi.org/10.1073/pnas.36.1.48).
-- **Selten:** Reinhard Selten (1965), *Spieltheoretische Behandlung eines Oligopolmodells mit Nachfrageträgheit: Teil I: Bestimmung des dynamischen Preisgleichgewichts*, Zeitschrift für die gesamte Staatswissenschaft **121**, 301–324. [JSTOR](https://www.jstor.org/stable/40748884).
-- **Harsanyi:** John C. Harsanyi (1967), *Games with incomplete information played by “Bayesian” players, I: The basic model*, Management Science **14**(3), 159–182. [DOI](https://doi.org/10.1287/mnsc.14.3.159). Part II (1968), *Bayesian equilibrium points*, **14**(5), 320–334. [DOI](https://doi.org/10.1287/mnsc.14.5.320).
-- **Interdisciplinary exemplar:** Stephan Zheng, Alexander Trott, Sunil Srinivasa, David C. Parkes and Richard Socher (2022), *The AI Economist: Taxation policy design via two-level deep reinforcement learning*, Science Advances **8**(18), eabk2607. [DOI](https://doi.org/10.1126/sciadv.abk2607); [archived official code](https://github.com/salesforce/ai-economist). The tutorial uses this as an integration exemplar, not a claim of uniqueness.
-- **Stable matching:** David Gale and Lloyd S. Shapley (1962), *College admissions and the stability of marriage*, The American Mathematical Monthly **69**(1), 9–15. [DOI](https://doi.org/10.2307/2312726).
-- **School choice:** Atila Abdulkadiroğlu and Tayfun Sönmez (2003), *School choice: A mechanism design approach*, American Economic Review **93**(3), 729–747. [DOI](https://doi.org/10.1257/000282803322157061). Atila Abdulkadiroğlu, Parag A. Pathak, Alvin E. Roth and Tayfun Sönmez (2005), *The Boston Public School Match*, American Economic Review **95**(2), 368–371. [DOI](https://doi.org/10.1257/000282805774669637).
-- **Official APIs:** [QuantEcon game theory](https://quanteconpy.readthedocs.io/en/latest/game_theory.html), [Nashpy](https://nashpy.readthedocs.io/en/stable/), [PyGambit](https://gambitproject.readthedocs.io/en/stable/pygambit.html), [Gambit GUI equilibrium computation](https://gambitproject.readthedocs.io/en/stable/gui.nash.html), [Gambit extensive-game editing](https://gambitproject.readthedocs.io/en/stable/gui.efg.html).
+[Back to top](#top)
 
-Machine-readable references are in [`references/references.bib`](references/references.bib). Source locations and verification notes are in [`references/SOURCE_NOTES.md`](references/SOURCE_NOTES.md).
+<a id="local-and-vercel"></a>
+## 8. Local use and Vercel deployment
 
-## Local use and verification
+### Static Three-Lens Studio
 
-Python 3.12 was used for validation. Create a virtual environment, activate it, then:
+Node.js 20 or later is sufficient. The site has no runtime dependency, API key, database, or environment variable.
 
 ```bash
+npm test
+npm run build
+python -m http.server 4173 --directory dist
+```
+
+Open `http://localhost:4173`. The build copies the reviewed files from `web/` into `dist/`.
+
+For Vercel Git import, keep the repository root as `./`, select **Other**, use `npm run build`, and publish `dist/`. The repository’s [`vercel.json`](vercel.json) already provides these settings. See the [step-by-step deployment and browser preflight](docs/DEPLOY_VERCEL.md).
+
+### Python notebooks and tests
+
+Python 3.12 was used for the release checks.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
 python -m pip install -r requirements.txt
 python -m pip install -r requirements-dev.txt
 python -m unittest discover -s tests -v
 ```
 
-Select that environment as your Jupyter kernel. Linux requires a C++ compiler for PyGambit; the notebook's setup cell provides a documented GNU-tool configuration. See [`docs/SETUP.md`](docs/SETUP.md).
+Linux requires a C++ compiler for PyGambit. See [`docs/SETUP.md`](docs/SETUP.md) for the documented GNU-tool configuration and notebook-specific guidance.
 
-All three notebooks have passed complete local execution and **27 model, presentation, and release-contract checks**. **46 math expressions** passed strict KaTeX typesetting, **3 Mermaid diagrams** passed parsing, and the Three-Lens Studio passed scripted Chromium interactions at desktop and mobile widths without horizontal overflow or clipped panels. Actual execution and render records are in [`outputs/`](outputs/). The notebooks include reference outputs, parameter-editing functions or change-one-input investigations, and saved animations. Validation uses local Python execution, algorithm checks, callback checks, and a local browser; it does not claim a remote Colab student-account session or a live Gambit/GTE GUI test. The [GitHub Actions workflow](https://github.com/sunshineluyao/gt-tools-demos/actions/workflows/notebooks.yml) independently executes all notebooks with standard Jupyter kernels after each push and repeats the web build and browser checks; consult that run for hosted results. Independent checks cover payoff orientation, mixed equilibrium, off-path credibility, ties, type-specific incentives, matching stability, and the Boston manipulation counterexample. Only the named baseline packages were installed; future tools were not.
+[Back to top](#top)
+
+<a id="validation"></a>
+## 9. Validation and evidence boundaries
+
+| Layer | What is checked | Evidence |
+|---|---|---|
+| Economic and algorithmic models | Payoff orientation, mixed equilibrium, off-path credibility, ties, type-specific incentives, matching stability, and Boston manipulation | [`outputs/model_tests.txt`](outputs/model_tests.txt) and [`outputs/validation.json`](outputs/validation.json) |
+| Notebooks | Complete execution, saved outputs, valid notebook structure, and saved matching animations | [`outputs/`](outputs/) execution records |
+| Markdown and mathematics | Strict KaTeX typesetting, Mermaid parsing, and protection against GitHub-sensitive superscript syntax | [`outputs/markdown_render_checks.json`](outputs/markdown_render_checks.json) |
+| Browser interface | Scripted interactions, keyboard-relevant controls, and desktop/mobile overflow checks | [`outputs/browser_render_checks.json`](outputs/browser_render_checks.json) |
+| Hosted automation | Notebook execution, web build, and repository checks after pushes | [GitHub Actions workflow](https://github.com/sunshineluyao/gt-tools-demos/actions/workflows/notebooks.yml) |
+
+These records support the released examples; they do not certify every student-created game, prove literature novelty, or replace human source verification. Local browser checks do not claim a live Google Colab student-account session or a live Gambit/GTE GUI test.
+
+[Back to top](#top)
 
 <a id="repository-map"></a>
-## Repository map
+## 10. Repository map
 
-| Open | What you will find |
+| Path | Purpose |
 |---|---|
-| [Notebooks](notebooks/) | Two Week 3 core notebooks plus the executed school-choice transfer notebook; future tool directories reserved |
-| [Three-Lens Studio](web/) | Static interactive tutorial: model triage, contribution stress test, and matching lab |
-| [Vercel guide](docs/DEPLOY_VERCEL.md) | One-click Git import, local preflight, privacy, and scope |
-| [Classroom guide](docs/Wednesday_UI_Demo.md) | Suggested 75-minute practice block, GUI walkthrough and exit ticket |
-| [Example games](examples/) | Ready-to-open Gambit `.nfg` and `.efg` files |
-| [Setup](docs/SETUP.md) | Environment and PyGambit installation guidance |
-| [References](references/) | Bibliography, source notes and upstream license texts |
-| [Validation](outputs/) | Actual execution records and checks |
-| [Visual assets](docs/assets/README.md) | Editable hero, navigation buttons and Mermaid source files |
-| [Maintenance scripts](scripts/) | Execution, teaching-page generation and reproducible graphics |
+| [`web/`](web/) | Three-Lens Studio source: strategic triage, contribution stress test, and school-choice matching lab |
+| [`notebooks/`](notebooks/) | Two Week 3 core notebooks, one Week 4 transfer notebook, and reserved future-tool directories |
+| [`docs/`](docs/) | Read-only teaching pages, classroom guide, setup instructions, and Vercel guide |
+| [`examples/`](examples/) | Gambit-ready `.nfg` and `.efg` files |
+| [`references/`](references/) | Bibliography, source-verification notes, and upstream license texts |
+| [`tests/`](tests/) | Economic-model, presentation, and release-contract checks |
+| [`scripts/`](scripts/) | Web build, notebook execution, rendering checks, and reproducibility utilities |
+| [`outputs/`](outputs/) | Execution receipts, validation summaries, screenshots, and file manifest |
+| [`validation/`](validation/) | Development-only packages for strict Markdown, Mermaid, KaTeX, and browser checks |
 
-Keep future folders empty until their teaching week. Append a new notebook with a clear model, assumptions, installation cell, source/license record, editable example and independent correctness check. Update this README's inventory and `CHANGELOG.md` when releasing it.
+Future-tool folders remain empty until their teaching week. A new notebook should include an explicit model, assumptions, installation cell, editable example, source/license record, saved output, and independent correctness check.
 
-The original teaching content has no newly selected public license in this revision; see [`LICENSE_POLICY.md`](LICENSE_POLICY.md). Upstream package licenses continue to apply to those packages. A future course-content license can be added by the instructor.
+[Back to top](#top)
+
+<a id="references"></a>
+<a id="software-and-licenses"></a>
+## 11. References, software, and licenses
+
+### Foundational pathway
+
+| Lens | Foundation used in this repository |
+|---|---|
+| Nash | John F. Nash (1950), *Equilibrium points in n-person games*. [DOI](https://doi.org/10.1073/pnas.36.1.48) |
+| Selten | Reinhard Selten (1965), *Spieltheoretische Behandlung eines Oligopolmodells mit Nachfrageträgheit: Teil I*. [JSTOR](https://www.jstor.org/stable/40748884) |
+| Harsanyi | John C. Harsanyi (1967), *Games with incomplete information played by “Bayesian” players, I*. [DOI](https://doi.org/10.1287/mnsc.14.3.159) |
+| Interdisciplinary contribution | Zheng et al. (2022), *The AI Economist*. [DOI](https://doi.org/10.1126/sciadv.abk2607) · [official archived code](https://github.com/salesforce/ai-economist) |
+| Stable matching | Gale and Shapley (1962), *College admissions and the stability of marriage*. [DOI](https://doi.org/10.2307/2312726) |
+| School-choice mechanism design | Abdulkadiroğlu and Sönmez (2003), *School choice: A mechanism design approach*. [DOI](https://doi.org/10.1257/000282803322157061) · Abdulkadiroğlu et al. (2005), *The Boston Public School Match*. [DOI](https://doi.org/10.1257/000282805774669637) |
+
+The AI Economist is used as a worked integration exemplar, not as a uniqueness claim. Students must still search for close papers, inspect primary sources, and revise the claimed contribution when counterevidence appears.
+
+### Active software
+
+| Tool | Role in this release | License/source |
+|---|---|---|
+| QuantEcon.py 0.11.4 | Computational-economics comparison in Notebook 01 | [MIT](https://github.com/QuantEcon/QuantEcon.py/blob/main/LICENSE) |
+| Nashpy 0.0.43 | Transparent two-player matrix-game calculations in Notebook 01 | [MIT](https://github.com/drvinceknight/Nashpy/blob/main/LICENSE) |
+| Gambit / PyGambit 16.7.0 | Strategic/extensive games, information sets, and exports in Notebook 02 | [GPL-2.0-or-later](https://github.com/gambitproject/gambit/blob/master/COPYING) |
+| Game Theory Explorer | Optional graphical classroom introduction | [GPL-3.0](https://github.com/gambitproject/gte/blob/master/COPYING) |
+
+OpenSpiel, Axelrod-Python, Mesa, PettingZoo, RLlib, and oTree folders are reserved for later teaching weeks; they are not executable additions in this release. Their authoritative sources, copied license texts, and verification notes are indexed in [`references/SOURCE_NOTES.md`](references/SOURCE_NOTES.md) and [`references/licenses/`](references/licenses/).
+
+Machine-readable citations are in [`references/references.bib`](references/references.bib), and repository citation metadata is in [`CITATION.cff`](CITATION.cff). The instructor’s original teaching content does not yet have a newly selected public license; see [`LICENSE_POLICY.md`](LICENSE_POLICY.md). Upstream package licenses continue to govern those packages.
+
+[Back to top](#top)

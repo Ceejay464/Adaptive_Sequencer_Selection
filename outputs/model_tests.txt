@@ -1,32 +1,20 @@
-test_asymmetric_axis_convention (test_examples.MatrixTests.test_asymmetric_axis_convention) ... ok
-test_matching_pennies (test_examples.MatrixTests.test_matching_pennies) ... ok
-test_matrix_widgets_pass_edited_payoffs (test_examples.MatrixTests.test_matrix_widgets_pass_edited_payoffs) ... ok
-test_prisoners_dilemma (test_examples.MatrixTests.test_prisoners_dilemma) ... ok
-test_tied_game_and_input_validation (test_examples.MatrixTests.test_tied_game_and_input_validation) ... ok
-test_boston_and_deferred_acceptance_paths (test_examples.SchoolChoiceTests.test_boston_and_deferred_acceptance_paths) ... ok
-test_boston_reporting_counterexample (test_examples.SchoolChoiceTests.test_boston_reporting_counterexample) ... ok
-test_stability_counterexample (test_examples.SchoolChoiceTests.test_stability_counterexample) ... ok
-test_backward_induction_preserves_ties (test_examples.TreeTests.test_backward_induction_preserves_ties) ... ok
-test_bayesian_baseline_and_prior_change (test_examples.TreeTests.test_bayesian_baseline_and_prior_change) ... ok
-test_bayesian_information_sets (test_examples.TreeTests.test_bayesian_information_sets) ... ok
-test_bayesian_parameters_against_conditional_incentives (test_examples.TreeTests.test_bayesian_parameters_against_conditional_incentives) ... ok
-test_entry_nash_and_spne (test_examples.TreeTests.test_entry_nash_and_spne) ... ok
-test_export_import_round_trip (test_examples.TreeTests.test_export_import_round_trip) ... ok
-test_tree_widgets_pass_edited_parameters (test_examples.TreeTests.test_tree_widgets_pass_edited_parameters) ... ok
-test_every_code_cell_has_successful_saved_output_state (test_presentation.PresentationTests.test_every_code_cell_has_successful_saved_output_state) ... ok
-test_figures_are_embedded_and_type_information_is_present (test_presentation.PresentationTests.test_figures_are_embedded_and_type_information_is_present) ... ok
-test_mermaid_sources_encode_information_sets (test_presentation.PresentationTests.test_mermaid_sources_encode_information_sets) ... ok
-test_saved_changed_parameter_examples (test_presentation.PresentationTests.test_saved_changed_parameter_examples) ... ok
-test_school_choice_animations_are_saved_and_described (test_presentation.PresentationTests.test_school_choice_animations_are_saved_and_described) ... ok
-test_teaching_pages_have_tables_figures_and_no_python_blocks (test_presentation.PresentationTests.test_teaching_pages_have_tables_figures_and_no_python_blocks) ... ok
-test_ai_stress_test_preserves_human_verification (test_three_lens.ThreeLensReleaseTests.test_ai_stress_test_preserves_human_verification) ... ok
-test_notebook_covers_personas_algorithms_and_primary_sources (test_three_lens.ThreeLensReleaseTests.test_notebook_covers_personas_algorithms_and_primary_sources) ... ok
-test_readme_avoids_markdown_sensitive_superscripts (test_three_lens.ThreeLensReleaseTests.test_readme_avoids_markdown_sensitive_superscripts) ... ok
-test_release_manifest_tracks_new_student_artifacts (test_three_lens.ThreeLensReleaseTests.test_release_manifest_tracks_new_student_artifacts) ... ok
-test_static_site_has_three_complete_modules (test_three_lens.ThreeLensReleaseTests.test_static_site_has_three_complete_modules) ... ok
-test_vercel_import_is_zero_configuration (test_three_lens.ThreeLensReleaseTests.test_vercel_import_is_zero_configuration) ... ok
+Local validation receipt · 2026-09-16
 
-----------------------------------------------------------------------
-Ran 27 tests in 3.957s
+Command: python -m unittest discover -s tests -v
+Result: 31 tests passed
 
-OK
+Coverage:
+- 17 model and interactive-control tests
+- 7 notebook presentation, compact-code, and animation tests
+- 7 static-site, deployment, motion, citation, and release-contract tests
+- 27 Bayesian parameter combinations compared with direct type-conditional incentive checks
+- Boston and Gale–Shapley proposal, acceptance/hold, rejection/displacement, continuation, stability, and manipulation paths
+
+Additional checks:
+- npm run validate: JavaScript logic and dependency-free Vercel build passed
+- node scripts/check_markdown.mjs: 87 KaTeX expressions and 3 Mermaid diagrams passed strict parsing
+- node scripts/check_browser.mjs: 1440×1000 and 390×844 passed with no clipping or horizontal overflow
+- All three notebooks executed from top to bottom with saved outputs and no error output
+- Notebook HTML conversion passed; the school-choice notebook contains two accessible animated round traces
+
+External boundary: remote Colab widget rendering was not exercised from this workspace. Widget callbacks are covered by local Python tests, and hosted Jupyter execution is configured in GitHub Actions.

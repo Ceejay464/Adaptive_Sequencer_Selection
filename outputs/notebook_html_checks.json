@@ -2,19 +2,19 @@
   {
     "notebook": "01_QuantEcon_Nashpy_Interactive.ipynb",
     "html_conversion": "passed",
-    "tables": 12,
+    "tables": 14,
     "embedded_images": 0
   },
   {
     "notebook": "02_Gambit_PyGambit_Interactive.ipynb",
     "html_conversion": "passed",
-    "tables": 12,
+    "tables": 15,
     "embedded_images": 7
   },
   {
     "notebook": "03_School_Choice_Three_Perspectives.ipynb",
     "html_conversion": "passed",
-    "tables": 2,
+    "tables": 7,
     "embedded_images": 0,
     "accessible_html_animations": 2,
     "reduced_motion_fallback": true
