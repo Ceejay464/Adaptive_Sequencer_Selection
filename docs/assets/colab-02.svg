@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="139" height="42" viewBox="0 0 139 42" role="img" aria-labelledby="title description">
-<title id="title">Colab 02</title>
-<desc id="description">Navigation link: Colab 02</desc>
-<g font-family="DejaVu Sans, Arial, sans-serif" stroke-linecap="round" stroke-linejoin="round">
-
-<rect x="1" y="1" width="137" height="40" rx="8" fill="#FFFFFF" stroke="#315EFB" stroke-width="1.5"/>
-<path d="M 19 14 L 13 21 L 19 28 M 29 14 L 35 21 L 29 28 M 26 12 L 22 30" fill="none" stroke="#315EFB" stroke-width="2"/>
-<text x="45" y="27" font-size="15" font-weight="700" text-anchor="start" fill="#315EFB">Colab 02</text>
-</g></svg>

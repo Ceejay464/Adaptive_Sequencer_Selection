@@ -1,0 +1,56 @@
+\section{Three connected research questions}
+Decentralized sequencer systems may re-centralize over time. Early winners can earn more fees and maximal extractable value (MEV), reinvest those gains in stake and infrastructure, and thereby increase their probability of winning future transaction-ordering rights. Existing mechanisms are often evaluated under fixed rules or static strategies, even though real sequencers can learn, reinvest, and adapt. The application considered here is repeated competition among five self-interested sequencers, each choosing a low, medium, or aggressive participation strategy in response to past rewards.
+
+\noindent\textbf{Q1---Economics:} Can an adaptive sequencer-selection or reward rule reduce long-run concentration of sequencing power while preserving most system efficiency?\par
+\noindent\textbf{Q2---Computation:} Can a multi-agent simulation measure how the adaptive mechanism changes concentration, welfare, and wins relative to the fixed mechanism?\par
+\noindent\textbf{Q3---Behavior:} How do learning and reinvestment turn early reward differences into persistent dominance, and does adaptive feedback change the strategies agents learn?
+
+The questions are interdependent. Incentive design defines the agents' rewards, learning determines their adaptive choices, and computation makes the resulting long-run distribution measurable. Figure~\ref{fig:teaser} summarizes this feedback loop and the proposed intervention.
+
+\section{Answer to Q1: incentives and intellectual lineage}
+The provisional hypothesis is that an adaptive rule can reduce persistent dominance with only a small loss in total welfare. The players are five sequencers. In every round, each selects a low, medium, or aggressive participation action using its experience of past rewards. Payoffs combine the reward from winning transaction-ordering rights with the consequences of the chosen participation level. Cumulative reward can improve future competitive position, creating an intertemporal incentive that a one-round benchmark does not capture.
+
+The fixed mechanism is the economic benchmark: selection and rewards do not respond to accumulated concentration. The proposed adaptive rule weakens the future advantage of any sequencer whose cumulative reward share becomes too large. This comparison isolates the decentralization--efficiency trade-off. All findings in this proposal are planned or anticipated; no simulation result is presented as observed evidence.
+
+\section{Answer to Q2: method and evaluation}
+I plan to simulate five learning sequencers with multi-agent reinforcement learning. The common inputs are the three available participation strategies, the agents' reward histories, and the selection and reward rules. The baseline keeps the mechanism fixed. The treatment adds an adaptive anti-concentration adjustment that reduces the future advantage of agents once their cumulative reward share becomes disproportionately large.
+
+The smallest feasible experiment runs both mechanisms from comparable initial conditions and records three outputs: reward-share concentration, total system welfare, and the distribution of sequencing wins across agents. Concentration can be summarized by the squared reward shares, $H=\sum_{i=1}^{5}s_i^2$, where $s_i$ is agent $i$'s cumulative reward share; lower values indicate a more even allocation. Welfare is the sum of agent rewards, and the win distribution shows whether apparent balance is persistent or merely temporary. Repeated seeds and identical evaluation horizons will provide a computational check. The game runs entirely in client-side JavaScript on the Hugging Face Static Space linked in the Open Science Statement. The anticipated result is lower persistent concentration with only a small welfare loss; this remains a hypothesis until the planned comparison is run.
+
+\section{Answer to Q3: behavior and competing explanations}
+The focal behavioral mechanism is adaptive reinforcement: agents repeat strategies that previously produced higher rewards, while accumulated rewards improve their future position. A competing explanation is that concentration arises mechanically from the selection rule even when strategies do not meaningfully adapt. The simulation can distinguish these explanations by comparing learning agents with otherwise identical agents following fixed strategies and by tracking whether strategy changes precede changes in reward share.
+
+The adaptive mechanism changes the learning environment by reducing the value of exploiting an already dominant position. Evidence for the proposal would be a stable decline in concentration across repeated runs while welfare remains close to the fixed-mechanism benchmark. I would reconsider the mechanism if concentration quickly returns, if dominance simply rotates without becoming less persistent, or if the welfare loss is large. These simulated outcomes will describe the model rather than establish how human operators or deployed blockchain systems behave. A later test should vary learning rules, reinvestment strength, and information available to sequencers.
+
+
+\section{Advanced development and future directions}
+The longer-term objective is to explain and design against endogenous re-centralization in decentralized infrastructure. The enduring economic problem is how an institution can limit cumulative advantage without destroying incentives to participate efficiently. The computational problem is to evaluate rules when strategic agents learn rather than remain fixed. The behavioral problem is to understand how reward histories reshape future participation. Their integration makes it possible to study a policy whose effects emerge only through repeated feedback.
+
+Future development will test alternative anti-concentration schedules, heterogeneous agents, longer horizons, and robustness to stronger reinvestment. The intellectual merit is an integrated account: behavioral science contributes adaptive behavior, economics contributes incentive design and the decentralization--efficiency trade-off, and computer science contributes the multi-agent simulation. Practically, the mechanism could help blockchain firms reduce dependence on dominant sequencers while preserving transaction performance. For the public sector, it offers a framework for more accountable decentralized infrastructure.
+
+\begin{table}[h]\caption{From laureate foundations to a new interdisciplinary contribution.}
+\begin{tabularx}{\columnwidth}{@{}p{1.6cm}Y@{}}\toprule
+\textbf{Horizon}&\textbf{Milestone and evidence}\\\midrule
+Foundation&Incentive design asks how institutional rules shape strategic behavior and welfare.\\
+PS1&Five learning sequencers; fixed baseline; concentration, welfare, and win-distribution checks.\\
+Next study&Adaptive anti-concentration design tested against fixed strategies and alternative learning rules.\\
+Longer term&Robustness tests and validation in richer blockchain environments.\\
+2056&Accountable decentralized infrastructure that limits cumulative advantage while retaining performance.\\\bottomrule
+\end{tabularx}\end{table}
+
+\noindent\textbf{Expected 2056 Nobel Prize and Turing Award contribution statement.}
+By 2056, I aspire to contribute mechanism designs that keep decentralized infrastructure accountable as strategic participants learn and accumulate advantage. I will integrate economic incentive design, multi-agent computation, and adaptive behavior to advance the decentralization--efficiency frontier. Progress will be demonstrated by reproducible simulations, robust concentration and welfare evidence, and eventual validation in operational settings, with practical value for blockchain firms and public institutions.
+
+\newpage
+
+\subsection*{Open Science Statement}
+\textbf{GitHub:} \GitHubLink\\
+\textbf{Google Colab:} \ColabLink\par
+The planned experiment uses synthetic agent histories and a client-side implementation. A public repository and verified Colab link have not yet been provided. The Hugging Face demonstration supplies the accessible interactive version described below.
+
+\subsection*{Statement of Contribution to the UN's SDGs}
+\textbf{Hugging Face:} \DemoLink\\
+Through an open-access interactive simulation, this project aims to support \textbf{SDG 4---Quality Education}~\cite{sdg4} by helping students and practitioners explore how repeated rewards can concentrate sequencing power and how adaptive rules change that trajectory. Users can compare mechanisms in a web browser without server-side computation. Its educational usefulness remains to be evaluated.
+
+\subsection*{Submission milestones}
+The next milestones are to run repeated-seed comparisons, report the three proposed outcome families, test sensitivity to learning and reinvestment assumptions, and revise the mechanism if its welfare cost or residual concentration is too high. Appendix~\ref{app:abstract} records the current proposal map.

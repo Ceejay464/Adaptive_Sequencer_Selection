@@ -1,0 +1,43 @@
+\documentclass[sigconf,nonacm]{acmart}
+\settopmatter{printacmref=false,printfolios=true}
+\setcopyright{none}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\usepackage{amsmath,tabularx,array,enumitem,balance}
+\definecolor{CourseBlue}{HTML}{315EFB}
+\definecolor{CourseTeal}{HTML}{14877D}
+\hypersetup{colorlinks=true,linkcolor=CourseBlue,citecolor=CourseTeal,urlcolor=CourseTeal}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlist{leftmargin=*,topsep=3pt,itemsep=2pt}
+\newcommand{\CourseNumber}{COMSCI/ECON 206}
+\newcommand{\CourseName}{Computational Microeconomics}
+\newcommand{\CourseSession}{Autumn 2026 Session 1}
+\newcommand{\Instructor}{Luyao Zhang}
+\newcommand{\WorkshopSession}{Not specified}
+\newcommand{\GitHubLink}{\href{https://github.com/Ceejay464/Adaptive_Sequencer_Selection}{Project repository}}
+\newcommand{\TemplateRepository}{\url{https://github.com/sunshineluyao/ps1-overleaf-template}}
+\newcommand{\ColabLink}{\href{https://colab.research.google.com/drive/140wnvKP6uoW_TY1fXSKdyZol7e7CtHf-}{Open Colab notebook}}
+\newcommand{\DemoLink}{\url{https://huggingface.co/spaces/asdfxsasd/Sequencer_Selection_Mechanism_Design}}
+\newcommand{\coursemeta}{\noindent\textbf{Submission to:} \CourseNumber{} --- \CourseName.\\
+\textbf{Course session:} \CourseSession. \textbf{Workshop:} \WorkshopSession.\\
+\textbf{Instructor:} \Instructor. \textbf{Assignment:} PS1 research proposal.\par\smallskip}
+\title{Adaptive Sequencer Selection: Limiting Long-Run Concentration While Preserving Efficiency}
+\author{Wang Zijie}
+\affiliation{\institution{Duke Kunshan University}\city{Kunshan}\country{China}}
+\renewcommand{\shortauthors}{Wang Zijie}
+
+\begin{document}
+\begin{teaserfigure}
+\captionsetup{skip=8pt}
+\centering
+\includegraphics[width=\textwidth]{figures/sequencer_teaser_figure.png}
+\caption{Proposed adaptive sequencer-selection experiment. Five self-interested learning sequencers repeatedly choose low, medium, or aggressive participation strategies. Their rewards, stake, and future selection chances create a possible positive-feedback loop. The adaptive mechanism weakens the future advantage of agents whose cumulative reward share becomes too large, and is evaluated against a fixed mechanism using concentration, welfare, and win-distribution outcomes.}
+\Description{A diagram of five learning sequencers competing for transaction-ordering rights under fixed and adaptive mechanisms, with feedback from rewards and accumulated advantage to future selection probability.}
+\label{fig:teaser}
+\end{teaserfigure}
+\maketitle\raggedbottom\coursemeta
+
+\noindent\textcolor{CourseTeal}{\textbf{Proposal overview.}} This proposal studies whether an adaptive selection or reward rule can prevent persistent concentration among learning sequencers without sacrificing most of the system's efficiency. The planned client-side simulation compares a fixed benchmark with an anti-concentration mechanism across repeated competition among five agents.
+
+\input{sections/proposal}
+\input{appendices/supporting}
+\end{document}

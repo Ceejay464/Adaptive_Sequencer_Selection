@@ -1,0 +1,49 @@
+\clearpage\nobalance
+\section*{Author Notes}
+\subsection*{Acknowledgements}
+This proposal was developed for COMSCI/ECON 206. No additional contributor information was provided. The author is responsible for the proposal and remaining errors.
+\subsection*{Individual contribution}
+The author formulated the research question, specified the fixed and adaptive mechanism comparison, designed the planned multi-agent experiment, and identified concentration, welfare, and win distribution as the principal outcomes.
+
+\bibliographystyle{ACM-Reference-Format}\bibliography{references}
+\appendix
+\section{Technical details and reproducibility}
+The planned model contains five agents and three actions per agent: low, medium, and aggressive participation. Each agent updates its behavior from past rewards. The fixed benchmark leaves selection and reward rules unchanged over time. The adaptive treatment reduces the future advantage of an agent when its cumulative reward share becomes too large. Planned outputs are the concentration index $H=\sum_{i=1}^{5}s_i^2$, total welfare, and agent-level win counts. Repeated random seeds, common horizons, and shared initial conditions will support comparison. The proposal does not yet claim completed experimental results.
+\subsection{AI-use disclosure}
+On September 19, 2026, Codex assisted in transferring the author's supplied proposal text into the provided Overleaf structure, adapting section-level prose, replacing the teaser figure, and checking PDF compilation and layout. The research idea, scenario, question, planned method, anticipated result, intellectual merits, and practical impacts were supplied by the author. The author remains responsible for every claim and computation.
+
+\section{Cumulative Intellectual Development}
+The proposal begins from the concern that decentralized sequencer systems may re-centralize through a feedback loop linking early rewards, reinvestment, and future selection probability. Its development turns that concern into a falsifiable comparison between a fixed mechanism and an adaptive rule. The central revision is conceptual: decentralization is treated as a dynamic outcome of learning and accumulated advantage rather than a static property of the initial allocation.
+
+Appendix~\ref{app:abstract} summarizes the current proposal. Future versions should record simulation evidence and revisions separately from the anticipated findings stated here.
+
+\section{Field and open-source inspiration}
+The open-source inspiration is a browser-based simulation that makes a dynamic mechanism visible and testable without a server-side installation. The Hugging Face Static Space provides the application setting for comparing the fixed and adaptive rules. No field observations or photographs were supplied for this version, so none are claimed.
+
+\section{Review response and revision record}
+No peer-review record was supplied. The current version preserves the proposed strengths---a clear feedback mechanism, a concrete five-agent application, and measurable outcomes---while identifying open checks: repeated seeds, alternative learning rules, heterogeneous agents, and sensitivity to reinvestment strength. Future feedback and corresponding revisions should be recorded here.
+
+\clearpage\onecolumn
+\section{Structured abstract and cumulative proposal map}\label{app:abstract}
+This table summarizes the current proposal and distinguishes planned evidence from anticipated results.
+\par\medskip
+\begin{table}[H]
+\caption{Structured abstract and current proposal map.}
+\label{tab:abstract-map}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}p{0.27\textwidth}Y@{}}
+\toprule
+\textbf{Proposal element} & \textbf{Current statement / change} \\
+\midrule
+Background & Early sequencer winners may convert fees and MEV into stake, infrastructure, and a greater chance of future wins, causing re-centralization. \\
+Motivation and application & Five self-interested sequencers repeatedly compete for transaction ordering and choose low, medium, or aggressive participation from past rewards. \\
+Three connected questions & Can adaptive incentive design reduce concentration; can simulation measure the trade-off; and how do learning and reinvestment shape persistence? \\
+Method and model assumptions & Multi-agent reinforcement learning compares a fixed mechanism with an adaptive rule that weakens excessive cumulative reward advantage. \\
+Results or expected results & Planned measures are reward-share concentration, total welfare, and win distribution. The anticipated result is less persistent dominance with a small efficiency loss. \\
+Intellectual merits & Economics supplies incentive design, computer science supplies simulation, and behavioral science supplies adaptive agents. \\
+Practical impacts & Blockchain firms may reduce dominant-sequencer dependence; public institutions gain a framework for accountable infrastructure; learners gain an open web simulation. \\
+Feedback received and revision made & No peer feedback was supplied. This version converts the proposal into the required five-section structure and labels all findings as planned or anticipated. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\noindent The current document distinguishes the supplied proposal, planned simulation evidence, and anticipated findings. Open-science links and the AI-use disclosure are reported above.
